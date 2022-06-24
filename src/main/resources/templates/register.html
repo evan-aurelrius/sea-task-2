@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/index.css">
+    <script src="/js/bootstrap.js"></script>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg text-light" style="background-color: var(--utama);">
+        <div class="container-fluid">
+            <a class="navbar-brand text-light" style="cursor: default;"><h3>Canteen</h3></a>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active text-light" aria-current="page" style="cursor: default;">|</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-light" href="/" style="cursor: default;">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active text-light" aria-current="page" style="cursor: default;">|</a>
+                    </li>
+                    <li th:if="${name}" class="nav-item">
+                        <a class="nav-link text-light" href="/createProduct">Create Product</a>
+                    </li>
+                    <li th:unless="${name}" class="nav-item">
+                        <a class="nav-link text-light" href="/login">Log in</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active text-light" aria-current="page" style="cursor: default;">|</a>
+                    </li>
+                    <li th:if="${name}" class="nav-item">
+                        <a class="nav-link text-light" href="/balanceBox">Balance Box</a>
+                    </li>
+                    <li th:unless="${name}" class="nav-item">
+                        <a class="nav-link active text-light" aria-current="page">Sign up</a>
+                    </li>
+                </ul>
+                <form th:if="${name}" class="d-flex">
+                    <h5 class="me-4 d-flex align-items-center mb-0" th:text="${name}"></h5>
+                    <a class="btn btn-danger btn-md me-3" href="/logout" role="button"> Log Out </a>
+                </form>
+            </div>
+        </div>
+    </nav>
+    <div class="main d-flex">
+        <img class="mb-4 mt-3" src="/images/logo.png"alt="SD SEA Sentosa Logo" width="250" height="250">
+        <div th:if="${error!=null}" class="alert alert-danger" role="alert" th:text="${error}">
+        </div>
+
+        <form th:action="@{/register}" th:object="${accountDto}" method="post" class="row needs-validation">
+            <div>
+                <input th:field="*{sid}" placeholder=" " type="text" class="form-control" id="validationCustom01" required autocomplete="off" maxlength="5">
+                <label for="validationCustom01">Student's ID</label>
+            </div>
+            <div>
+                <input th:field="*{first_name}" placeholder=" " type="text" class="form-control" id="validationCustom02" required autocomplete="off" maxlength="24">
+                <label for="validationCustom02">First Name</label>
+            </div>
+            <div>
+                <input th:field="*{last_name}" placeholder=" " type="text" class="form-control" id="validationCustom03" autocomplete="off" maxlength="24">
+                <label for="validationCustom01">Last Name</label>
+            </div>
+            <div>
+                <input th:field="*{password}" placeholder=" " type="text" class="form-control" id="validationCustom04" required autocomplete="off" maxlength="100">
+                <label for="validationCustom02">Password</label>
+            </div>
+            <span id="regis">
+                Already have an account? 
+                <a id="signUp" href="/login"><b>Log in</b></a>
+            </span>
+            <div class="col-12 d-flex justify-content-center">
+                <button id="register" class="btn" type="submit">Register</button>
+            </div>
+        </form>
+        <a class="btn btn-sm mt-2" id="goHome" href="/" role="button"> Continue As Guest </a>
+
+    </div>
+</body>
+</html>

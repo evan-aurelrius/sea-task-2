@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <script src="/js/bootstrap.js"></script>
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg text-light" style="background-color: var(--utama);">
+    <div class="container-fluid">
+      <a class="navbar-brand text-light" style="cursor: default;"><h3>Canteen</h3></a>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active text-light" aria-current="page" style="cursor: default;">|</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active text-light" aria-current="page" style="cursor: default;">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active text-light" aria-current="page" style="cursor: default;">|</a>
+          </li>
+          <li th:if="${name}" class="nav-item">
+            <a class="nav-link text-light" href="/createProduct">Create Product</a>
+          </li>
+            <li th:unless="${name}" class="nav-item">
+                <a class="nav-link text-light" href="/login">Log in</a>
+            </li>
+          <li class="nav-item">
+            <a class="nav-link active text-light" aria-current="page" style="cursor: default;">|</a>
+          </li>
+          <li th:if="${name}" class="nav-item">
+            <a class="nav-link text-light" href="/balanceBox">Balance Box</a>
+          </li>
+            <li th:unless="${name}" class="nav-item">
+                <a class="nav-link text-light" href="/register">Sign up</a>
+            </li>
+      </ul>
+        <form th:if="${name}" class="d-flex">
+            <h5 class="me-4 d-flex align-items-center mb-0" th:text="${name}"></h5>
+            <a class="btn btn-danger btn-md me-3" href="/logout" role="button"> Log Out </a>
+        </form>
+      </div>
+    </div>
+  </nav>
+
+  <div class="dropdown d-flex justify-content-end mt-2 mb-4 container-fluid py-2">
+    <a class="btn dropdown-toggle" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false" style="background: var(--cadangan);">
+        <span class="pe-5">Sort By</span>
+    </a>
+    
+    <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+      <li><a class="dropdown-item" href="#">Product name ascending</a></li>
+      <li><a class="dropdown-item" href="#">Product name descending</a></li>
+      <li><a class="dropdown-item" href="#">Oldest product</a></li>
+      <li><a class="dropdown-item" href="#">Latest product</a></li>
+    </ul>
+  </div>
+  
+  <div class="row row-cols-2 row-cols-xl-3 g-4 w-100 mx-0 justify-content-center" id="main">
+      <!-- ex 1 -->
+      <div class="card mb-3 px-0 mx-2" style="cursor: pointer;max-width: 540px;">
+        <div class="row g-0">
+          <div class="col-md-4">
+            <img
+            style="background: var(--gambar);"
+            data-bs-toggle="modal" data-bs-target="#scrollable" class="img-fluid rounded-start w-100 h-75">
+
+            <button id="buyProduct" type="button" class="w-100 h-25" data-bs-toggle="modal" data-bs-target="#exampleModal"
+            style="z-index: 2; background: var(--cadangan);">
+                Buy Product
+            </button>
+          </div>
+          <div class="col-md-8" data-bs-toggle="modal" data-bs-target="#scrollable">
+            <div class="card-body">
+                <p class="card-title fs-4 mb-0">WARLOCK</p>
+                <b><p class="card-text fs-4">Rp 5.000.000</p></b>
+                <p class="card-text">
+                    This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.
+                </p>
+                <p class="card-text"><small class="text-muted">Tanggal dibuat</small></p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- pop up buy -->
+      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Buy Product</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Are you sure want to buy this product?
+            </div>
+            <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+            <button type="button" class="btn btn-primary">Yes</button>
+            </div>
+        </div>
+        </div>
+      </div>
+
+      <!-- popup detail -->
+      <div class="modal fade m-0" id="scrollable" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">WARLOCK</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <img
+            style="background: var(--gambar);
+            width: 100vw;
+            height: 20vw;"
+            class="img-fluid card-img-top">
+            <div class="modal-body m-0 border-0">
+              <div class="card border-0">
+                <div class="card-body">
+                  <h5 class="card-title">Rp 5.000.000</h5>
+                  <p class="card-text">
+                    text pertama
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Voluptatem soluta aperiam dolorum quod quos pariatur quaerat saepe,
+                    dolore culpa assumenda labore ea consequuntur voluptatum ipsum quidem repudiandae sed atque ab!
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Voluptatem soluta aperiam dolorum quod quos pariatur quaerat saepe,
+                    dolore culpa assumenda labore ea consequuntur voluptatum ipsum quidem repudiandae sed atque ab!
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Voluptatem soluta aperiam dolorum quod quos pariatur quaerat saepe,
+                    dolore culpa assumenda labore ea consequuntur voluptatum ipsum quidem repudiandae sed atque ab!
+                  </p>
+                  <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary" data-bs-dismiss="modal" data-bs-target="#exampleModal" data-bs-toggle="modal">Buy Product</button>
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>>
+</body>
+<style>
+      :root{
+        --gambar:url("https://imgs.search.brave.com/w3uU47vMjhdPKQNNHsQX9RkTLm4CBX5LvVYWTnOYq8A/rs:fit:711:225:1/g:ce/aHR0cHM6Ly90c2Uy/Lm1tLmJpbmcubmV0/L3RoP2lkPU9JUC4z/ZkZVdWNEWXU2NGo4/VkY2eVlsZGp3SGFF/OCZwaWQ9QXBp");
+        --utama:#85586F;
+        --cadangan:#DEB6AB;
+        --bg:#F8ECD1;
+      }
+
+      body{
+        background: var(--bg);
+      }
+
+      img{
+        background-repeat: no-repeat !important;
+        background-size: cover !important;
+        background-position: center !important;
+      }
+
+      #buyProduct:focus + #scrollable{
+          border: 0px solid ;
+          display: flex;
+      }
+
+      #buyProduct:hover{
+          font-size: 20px;
+      }
+</style>
+</html>

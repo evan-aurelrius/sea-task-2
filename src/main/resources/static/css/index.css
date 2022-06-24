@@ -1,0 +1,77 @@
+:root{
+    --utama:#85586F;
+    --cadangan:#DEB6AB;
+    --bg:#F8ECD1;
+}
+
+body{
+    font-size: 12px;
+    background: var(--bg);
+}
+
+.btn{
+    font-size: 12px;
+}
+
+.main{
+    height: 90vh;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+}
+
+label{
+    position: absolute;
+    margin-left: 1vw;
+    margin-top: -5vh;
+}
+
+input{
+    margin : 1vh 0;
+}
+
+input:focus + label{
+    animation-duration: 300ms;
+    animation-name: labelGoTop;
+    animation-fill-mode: forwards;
+    background: var(--utama);
+}
+
+@keyframes labelGoTop {
+    0%   {margin-top: -5vh;
+        background: none;
+        color: black;
+        padding: 0vw;}
+    100% {margin-top: -8.5vh;
+        background: var(--utama);
+        Color: white;
+        padding: 3px;}
+}
+
+input:focus + label,
+input:not(:placeholder-shown) + label {
+    margin-top: -8.5vh;
+    background: var(--utama);
+    Color: white;
+    padding: 3px;
+}
+
+#regis{
+    margin-left: 1vw;
+}
+
+#goHome {
+    width: 8vw;
+    background: var(--cadangan);
+}
+
+#login, #register{
+    width: 8vw;
+    background: var(--utama);
+    color: white;
+}
+
+#signUp{
+    color: var(--utama);
+}
