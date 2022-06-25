@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Balance</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="bootstarp5.js"></script>
+    <style>
+        :root{
+        --utama:#85586F;
+        --cadangan:#DEB6AB;
+        --bg:#F8ECD1;
+        }
+
+        body{
+            background: var(--bg);
+            height: 100vh;
+        }
+
+        .navbar{
+            background:var(--utama) !important;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-xl text-light navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand text-light" style="cursor: default;"><h3>Canteen</h3></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active text-light" aria-current="page" style="cursor: default;">|</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active text-light" aria-current="page" href="home.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active text-light" aria-current="page" style="cursor: default;">|</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-light" href="createProduct.html">Create Product</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active text-light" aria-current="page" style="cursor: default;">|</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-light" style="cursor: default;">Balance Box</a>
+                    </li>
+                </ul>
+                <form class="d-flex">
+                    <h5 class="me-4 d-flex align-items-center mb-0">Name</h5>
+                    <a class="btn btn-danger btn-md me-3" href="index.html" role="button"> Log Out </a>
+                </form>
+            </div>
+        </div>
+    </nav>
+    
+    <div class="position-absolute top-50 start-50 translate-middle">
+        <div class="modal-dialog">
+            <div class="modal-content border-dark border-3 px-5 py-3" style="background-color: var(--cadangan)">
+                <div class="modal-header d-block border-dark border-0">
+                    <div>
+                        <h1 class="modal-title" id="exampleModalLabel">Balance</h1>
+                    </div>
+                    <div>
+                        <h1 class="modal-title" id="exampleModalLabel" style="font-size: 50px">Rp 5.000.000</h1>
+                    </div>
+                </div>
+                <div class="modal-footer justify-content-around border-dark border-0">
+                     <!-- Button trigger modal 1 -->
+                    <button type="button" class="btn fs-4" style="background-color: var(--utama); color: white;" data-bs-toggle="modal" data-bs-target="#exampleModal1">
+                        Top Up
+                    </button>
+                     <!-- Button trigger modal 1 -->
+                     <button type="button" class="btn fs-4" style="z-index: 2; background-color: var(--bg);" data-bs-toggle="modal" data-bs-target="#exampleModal2">
+                        Withdraw
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal 1 -->
+    <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Top Up</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="input-group mb-3">
+                    <span class="input-group-text">Rp</span>
+                    <input type="text" class="form-control" aria-label="Dollar amount (with dot and two decimal places)">
+                </div>
+            </div>
+            <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Top Up</button>
+            </div>
+        </div>
+        </div>
+    </div>
+
+    <!-- Modal 2 -->
+    <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Withdraw</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="input-group mb-3">
+                    <span class="input-group-text">Rp</span>
+                    <input type="text" class="form-control" aria-label="Dollar amount (with dot and two decimal places)">
+                </div>
+            </div>
+            <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Withdraw</button>
+            </div>
+        </div>
+        </div>
+    </div>
+
+
+
+</body>
+</html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script src="bootstarp5.js"></script>
+    <title>Create Product</title>
+    <style>
+        :root{
+        --utama:#85586F;
+        --cadangan:#DEB6AB;
+        --bg:#F8ECD1;
+        }
+
+        body{
+            background-color: var(--bg);
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg text-light" style="background-color: var(--utama);">
+        <div class="container-fluid">
+            <a class="navbar-brand text-light" style="cursor: default;"><h3>Canteen</h3></a>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                <a class="nav-link active text-light" aria-current="page" style="cursor: default;">|</a>
+                </li>
+                <li class="nav-item">
+                <a class="nav-link active text-light" aria-current="page" href="home.html">Home</a>
+                </li>
+                <li class="nav-item">
+                <a class="nav-link active text-light" aria-current="page" style="cursor: default;">|</a>
+                </li>
+                <li class="nav-item">
+                <a class="nav-link text-light" style="cursor: default;">Create Product</a>
+                </li>
+                <li class="nav-item">
+                <a class="nav-link active text-light" aria-current="page" style="cursor: default;">|</a>
+                </li>
+                <li class="nav-item">
+                <a class="nav-link text-light" href="balance.html">Balance Box</a>
+                </li>
+            </ul>
+            <form class="d-flex">
+                <h5 class="me-4 d-flex align-items-center mb-0">Name</h5>
+                <a class="btn btn-danger btn-md me-3" href="index.html" role="button"> Log Out </a>
+            </form>
+            </div>
+        </div>
+    </nav>
+
+    <div class="mt-5 d-flex align-items-center justify-content-center">
+        <div class="w-50">
+            <form action="get">
+                <div class="mb-3">
+                    <label for="formFile" class="form-label">Please upload product image</label>
+                    <input class="form-control" type="file" id="formFile" required>
+                </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text w-25" id="basic-addon1">Product name</span>
+                    <input type="text" class="form-control" placeholder="Product Name" aria-label="Username" aria-describedby="basic-addon1" required>
+                </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text w-25" id="basic-addon1">Product price</span>
+                    <input type="text" class="form-control" placeholder="Product Price" aria-label="Username" aria-describedby="basic-addon1" required>
+                </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text w-25 align-items-start" id="basic-addon1">Product description</span>
+                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Product Description" required></textarea>
+                </div>
+                <div class="text-center">
+                    <a href="home.html">
+                        <button type="submit" class="btn btn-lg" style="background-color: var(--utama); Color:white;">Create</button>
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+      
+
+</body>
+</html>
