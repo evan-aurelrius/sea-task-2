@@ -1,8 +1,12 @@
 package com.evanaurelrius.seacademy.model;
 
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 @Data
+@Getter
+@Setter
 public class AccountDTO {
     private String first_name;
     private String last_name;
