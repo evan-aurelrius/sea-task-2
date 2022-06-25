@@ -35,7 +35,7 @@
             <li th:unless="${name}" class="nav-item">
                 <a class="nav-link text-light" style="cursor: default;">Sign up</a>
             </li>
-                
+
         </ul>
             <form th:if="${name}" class="d-flex">
                 <h5 class="me-4 d-flex align-items-center mb-0" th:text="${name}"></h5>
@@ -47,22 +47,25 @@
 
     <div class="d-flex mt-2 flex-column align-items-center">
         <img class="mb-3" style=" width:250px; height:250px" src="/images/logo.png" alt="SD SEA Sentosa Logo">
-        <form action="" method="post" class="w-50">
+        <div th:if="${error!=null}" class="alert alert-danger" role="alert" th:text="${error}"></div>
+
+        <form th:action="@{/register}" th:object="${accountDto}" method="post" class="w-50">
+
             <div class="input-group mb-2">
                 <span class="input-group-text w-25" id="basic-addon1">Student's ID</span>
-                <input type="text" class="form-control" placeholder=" " aria-label="Username" aria-describedby="basic-addon1">
+                <input th:field="*{sid}" type="text" class="form-control" placeholder=" " aria-describedby="basic-addon1" required>
             </div>
             <div class="input-group mb-2">
-                <span class="input-group-text w-25" id="basic-addon1">First name</span>
-                <input type="text" class="form-control" placeholder=" " aria-label="Username" aria-describedby="basic-addon1">
+                <span class="input-group-text w-25" id="basic-addon12">First name</span>
+                <input th:field="*{first_name}" type="text" class="form-control" placeholder=" " aria-describedby="basic-addon2" required>
             </div>
             <div class="input-group mb-2">
-                <span class="input-group-text w-25" id="basic-addon1">Last name</span>
-                <input type="text" class="form-control" placeholder=" " aria-label="Username" aria-describedby="basic-addon1">
+                <span class="input-group-text w-25" id="basic-addon3">Last name</span>
+                <input th:field="*{last_name}" type="text" class="form-control" placeholder=" " aria-describedby="basic-addon3">
             </div>
             <div class="input-group mb-2">
-                <span class="input-group-text w-25" id="basic-addon1">Password</span>
-                <input type="text" class="form-control" placeholder=" " aria-label="Username" aria-describedby="basic-addon1">
+                <span class="input-group-text w-25" id="basic-addon4">Password</span>
+                <input th:field="*{password}" type="text" class="form-control" placeholder=" " aria-describedby="basic-addon4" required>
             </div>
             <div>
                 Already have an account? <a style="text-decoration: none; color:var(--utama)" href="/login"><b>Login</b></a>
@@ -74,11 +77,12 @@
                     type="submit" class="btn border-0 text-light">Register</button>
                 </div>
                 <div class="d-flex w-100 justify-content-center">
-                    <button style="width:30%; background-color: var(--cadangan);"
-                    class="btn border-0">Continue As Guest</button>
+                    <button style="width:30%; background-color: var(--cadangan);" class="btn border-0" href="/">Continue As Guest</button>
                 </div>
             </span>
+
         </form>
+
     </div>
 
 </body>

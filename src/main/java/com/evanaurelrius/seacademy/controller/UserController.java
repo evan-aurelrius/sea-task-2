@@ -2,6 +2,7 @@ package com.evanaurelrius.seacademy.controller;
 
 import com.evanaurelrius.seacademy.model.Account;
 import com.evanaurelrius.seacademy.model.AccountDTO;
+import com.evanaurelrius.seacademy.service.BalanceService;
 import com.evanaurelrius.seacademy.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,32 +11,17 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.math.BigInteger;
 
 @Controller
 public class UserController {
 
     private String error = "";
-    private Account sessionAccount;
     @Autowired
     UserService userService;
 
-    @RequestMapping(method = RequestMethod.GET, path = "/")
-    public String homepage(Model model, HttpSession session) {
-        String fullName = (String) session.getAttribute("fullName");
-        if(fullName!=null){
-            model.addAttribute("name", fullName);
-        }
-        return "home";
-    }
-
-    @RequestMapping(method = RequestMethod.GET, path = "/createProduct")
-    public String createProduct(Model model, HttpSession session) {
-        String fullName = (String) session.getAttribute("fullName");
-        if(fullName!=null){
-            model.addAttribute("name", fullName);
-        }
-        return "createProduct";
-    }
+    @Autowired
+    BalanceService balanceService;
 
     @GetMapping("/register")
     public String registerPage(Model model, HttpSession session) {

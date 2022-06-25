@@ -15,10 +15,6 @@
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 
                 <li class="nav-item">
-                <a class="nav-link active text-light" aria-current="page" style="cursor: default;">|</a>
-                </li>
-
-                <li class="nav-item">
                 <a class="nav-link active text-light" aria-current="page" href="/">Home</a>
                 </li>
 
@@ -48,29 +44,29 @@
 
     <div class="mt-5 d-flex align-items-center justify-content-center">
         <div class="w-50">
-            <form action="get">
+
+            <form th:action="@{/createProduct}" th:object="${productDto}" method="post" enctype="multipart/form-data">
                 <div class="mb-3">
                     <label for="formFile" class="form-label">Please upload product image</label>
-                    <input class="form-control" type="file" id="formFile" required>
+                    <input th:field="*{imageSrc}" class="form-control" type="file" id="formFile" required>
                 </div>
                 <div class="input-group mb-3">
                     <span class="input-group-text w-25" id="basic-addon1">Product name</span>
-                    <input type="text" class="form-control" placeholder="Product Name" aria-label="Username" aria-describedby="basic-addon1" required>
+                    <input th:field="*{name}" type="text" class="form-control" placeholder="Product Name" aria-label="Username" aria-describedby="basic-addon1" required>
                 </div>
                 <div class="input-group mb-3">
                     <span class="input-group-text w-25" id="basic-addon2">Product price</span>
-                    <input type="text" class="form-control" placeholder="Product Price" aria-label="Username" aria-describedby="basic-addon1" required>
+                    <input th:field="*{price}" type="text" class="form-control" placeholder="Product Price" aria-label="Username" aria-describedby="basic-addon1" required>
                 </div>
                 <div class="input-group mb-3">
                     <span class="input-group-text w-25 align-items-start" id="basic-addon3">Product description</span>
-                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Product Description" required></textarea>
+                    <textarea th:field="*{description}" class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Product Description" required></textarea>
                 </div>
                 <div class="text-center">
-                    <a href="home.html">
-                        <button type="submit" class="btn btn-lg" style="background-color: var(--utama); Color:white;">Create</button>
-                    </a>
+                    <button type="submit" class="btn btn-lg" style="background-color: var(--utama); Color:white;">Create</button>
                 </div>
             </form>
+
         </div>
     </div>
       

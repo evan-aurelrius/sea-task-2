@@ -1,5 +1,8 @@
 package com.evanaurelrius.seacademy.model;
 
+import org.hibernate.annotations.Type;
+import org.springframework.web.multipart.MultipartFile;
+
 import javax.persistence.*;
 import java.sql.Date;
 
@@ -14,7 +17,7 @@ public class Product {
     @Column(name = "name")
     private String name;
 
-    @Column(name = "imagesrc")
+    @Column(name = "imageSrc")
     private String imageSrc;
 
     @Column(name = "description")
@@ -25,6 +28,17 @@ public class Product {
 
     @Column(name = "date")
     private Date date;
+
+    public Product() {
+    }
+
+    public Product(String name, String imageSrc, String description, String price, Date date) {
+        this.name = name;
+        this.imageSrc = imageSrc;
+        this.description = description;
+        this.price = price;
+        this.date = date;
+    }
 
     public long getId() {
         return id;
@@ -42,12 +56,12 @@ public class Product {
         this.name = name;
     }
 
-    public String getLast_name() {
+    public String getImageSrc() {
         return imageSrc;
     }
 
-    public void setLast_name(String last_name) {
-        this.imageSrc = last_name;
+    public void setImageSrc(String imgSrc) {
+        this.imageSrc = imgSrc;
     }
 
     public String getDescription() {

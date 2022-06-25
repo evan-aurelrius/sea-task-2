@@ -1,28 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Balance</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="bootstarp5.js"></script>
-    <style>
-        :root{
-        --utama:#85586F;
-        --cadangan:#DEB6AB;
-        --bg:#F8ECD1;
-        }
-
-        body{
-            background: var(--bg);
-            height: 100vh;
-        }
-
-        .navbar{
-            background:var(--utama) !important;
-        }
-    </style>
 </head>
 <body>
     <nav class="navbar navbar-expand-xl text-light navbar-light bg-light">
@@ -33,42 +15,49 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
                     <li class="nav-item">
-                        <a class="nav-link active text-light" aria-current="page" style="cursor: default;">|</a>
+                        <a class="nav-link active text-light" aria-current="page" href="/">Home</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link active text-light" aria-current="page" href="home.html">Home</a>
+
+                    <li th:if="${name}" class="nav-item">
+                        <a class="nav-link active text-light" aria-current="page" href="/createProduct">Create Product</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link active text-light" aria-current="page" style="cursor: default;">|</a>
+
+                    <li th:unless="${name}" class="nav-item">
+                        <a class="nav-link text-light" href="/login">Log in</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-light" href="createProduct.html">Create Product</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active text-light" aria-current="page" style="cursor: default;">|</a>
-                    </li>
-                    <li class="nav-item">
+
+                    <li th:if="${name}" class="nav-item">
                         <a class="nav-link text-light" style="cursor: default;">Balance Box</a>
                     </li>
+
+                    <li th:unless="${name}" class="nav-item">
+                        <a class="nav-link text-light" href="/register">Sign up</a>
+                    </li>
+
                 </ul>
-                <form class="d-flex">
-                    <h5 class="me-4 d-flex align-items-center mb-0">Name</h5>
-                    <a class="btn btn-danger btn-md me-3" href="index.html" role="button"> Log Out </a>
+
+                <form th:if="${name}" class="d-flex">
+                    <h5 class="me-4 d-flex align-items-center mb-0" th:text="${name}"></h5>
+                    <a class="btn btn-danger btn-md me-3" href="/logout" role="button"> Log Out </a>
                 </form>
+
             </div>
         </div>
     </nav>
-    
+    <div class="container mt-2">
+        <div th:if="${error!=null}" class="alert alert-danger" role="alert" th:text="${error}"></div>
+    </div>
     <div class="position-absolute top-50 start-50 translate-middle">
         <div class="modal-dialog">
             <div class="modal-content border-dark border-3 px-5 py-3" style="background-color: var(--cadangan)">
                 <div class="modal-header d-block border-dark border-0">
                     <div>
-                        <h1 class="modal-title" id="exampleModalLabel">Balance</h1>
+                        <h1 class="modal-title">Balance</h1>
                     </div>
                     <div>
-                        <h1 class="modal-title" id="exampleModalLabel" style="font-size: 50px">Rp 5.000.000</h1>
+                        <h1 class="modal-title" style="font-size: 50px" th:text="${balance}"></h1>
                     </div>
                 </div>
                 <div class="modal-footer justify-content-around border-dark border-0">
@@ -90,18 +79,21 @@
         <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Top Up</h5>
+            <h5 class="modal-title">Top Up</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body">
-                <div class="input-group mb-3">
-                    <span class="input-group-text">Rp</span>
-                    <input type="text" class="form-control" aria-label="Dollar amount (with dot and two decimal places)">
+            <form th:action="@{/topup}" th:object="${balanceDto}" method="post">
+                <div class="modal-body">
+                    <div class="input-group mb-3">
+                        <span class="input-group-text">Rp</span>
+                        <input th:field="*{amount}" type="text" class="form-control" required>
+                    </div>
                 </div>
-            </div>
-            <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Top Up</button>
+                <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary">Top Up</button>
+                </div>
+            </form>
             </div>
         </div>
         </div>
@@ -112,24 +104,42 @@
         <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Withdraw</h5>
+            <h5 class="modal-title">Withdraw</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body">
-                <div class="input-group mb-3">
-                    <span class="input-group-text">Rp</span>
-                    <input type="text" class="form-control" aria-label="Dollar amount (with dot and two decimal places)">
+            <form th:action="@{/withdraw}" th:object="${balanceDto}" method="post">
+                <div class="modal-body">
+                    <div class="input-group mb-3">
+                        <span class="input-group-text">Rp</span>
+                        <input th:field="*{amount}" type="text" class="form-control" required>
+                    </div>
                 </div>
-            </div>
-            <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Withdraw</button>
-            </div>
+                <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary">Withdraw</button>
+                </div>
+            </form>
         </div>
         </div>
     </div>
 
-
-
 </body>
+<link rel="stylesheet" href="/css/style.css">
+<script src="/js/bootstrap.js"></script>
+<style>
+        :root{
+        --utama:#85586F;
+        --cadangan:#DEB6AB;
+        --bg:#F8ECD1;
+        }
+
+        body{
+            background: var(--bg);
+            height: 100vh;
+        }
+
+        .navbar{
+            background:var(--utama) !important;
+        }
+    </style>
 </html>

@@ -63,12 +63,11 @@
   
   <div class="row row-cols-2 row-cols-xl-3 g-4 w-100 mx-0 justify-content-center" id="main">
       <!-- ex 1 -->
-      <div class="card mb-3 px-0 mx-2" style="cursor: pointer;max-width: 540px;">
+      <div th:each="product: ${products}" class="card mb-3 px-0 mx-2" style="cursor: pointer;max-width: 540px;">
         <div class="row g-0">
           <div class="col-md-4">
-            <img
-            style="background: var(--gambar);"
-            data-bs-toggle="modal" data-bs-target="#scrollable" class="img-fluid rounded-start w-100 h-75">
+            <img th:src="@{'/imagedata/' + ${product.imageSrc}}" style="max-width:75%; max-height:75%; vertical-align: middle;"
+              data-bs-toggle="modal" data-bs-target="#scrollable" class="rounded-start">
 
             <button id="buyProduct" type="button" class="w-100 h-25" data-bs-toggle="modal" data-bs-target="#exampleModal"
             style="z-index: 2; background: var(--cadangan);">
@@ -77,12 +76,10 @@
           </div>
           <div class="col-md-8" data-bs-toggle="modal" data-bs-target="#scrollable">
             <div class="card-body">
-                <p class="card-title fs-4 mb-0">WARLOCK</p>
-                <b><p class="card-text fs-4">Rp 5.000.000</p></b>
-                <p class="card-text">
-                    This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.
-                </p>
-                <p class="card-text"><small class="text-muted">Tanggal dibuat</small></p>
+                <p class="card-title fs-4 mb-0" th:text="${product.name}"></p>
+                <b><p class="card-text fs-4" th:text="${product.price}"></p></b>
+                <p class="card-text" th:text="${product.description}"></p>
+                <p class="card-text"><small class="text-muted" th:text="${'Product created at: ' + product.date}"></small></p>
             </div>
           </div>
         </div>
