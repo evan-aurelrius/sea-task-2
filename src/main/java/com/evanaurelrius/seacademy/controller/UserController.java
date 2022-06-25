@@ -21,12 +21,20 @@ public class UserController {
 
     @RequestMapping(method = RequestMethod.GET, path = "/")
     public String homepage(Model model, HttpSession session) {
-        Account currentUser = (Account) session.getAttribute("currentUser");
-        if(currentUser!=null){
-            model.addAttribute("name", currentUser.getFirst_name()
-                    + " " + currentUser.getLast_name());
+        String fullName = (String) session.getAttribute("fullName");
+        if(fullName!=null){
+            model.addAttribute("name", fullName);
         }
         return "home";
+    }
+
+    @RequestMapping(method = RequestMethod.GET, path = "/createProduct")
+    public String createProduct(Model model, HttpSession session) {
+        String fullName = (String) session.getAttribute("fullName");
+        if(fullName!=null){
+            model.addAttribute("name", fullName);
+        }
+        return "createProduct";
     }
 
     @GetMapping("/register")
@@ -55,6 +63,8 @@ public class UserController {
             return "redirect:/register";
         } else {
             request.getSession().setAttribute("currentUser",user);
+            request.getSession().setAttribute("fullName",user.getFirst_name()
+                    + " " + user.getLast_name());
             return "redirect:/";
         }
     }
@@ -81,6 +91,8 @@ public class UserController {
             return "redirect:/login";
         }
         request.getSession().setAttribute("currentUser",user);
+        request.getSession().setAttribute("fullName",user.getFirst_name()
+                + " " + user.getLast_name());
         return "redirect:/";
     }
 
