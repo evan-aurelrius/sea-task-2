@@ -46,9 +46,7 @@
             </div>
         </div>
     </nav>
-    <div class="container mt-2">
         <div th:if="${error!=null}" class="alert alert-danger" role="alert" th:text="${error}"></div>
-    </div>
     <div class="position-absolute top-50 start-50 translate-middle">
         <div class="modal-dialog">
             <div class="modal-content border-dark border-3 px-5 py-3" style="background-color: var(--cadangan)">
@@ -75,7 +73,7 @@
     </div>
 
     <!-- Modal 1 -->
-    <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="detailDialog" aria-hidden="true">
         <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">

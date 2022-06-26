@@ -21,6 +21,8 @@ public class ProductController {
     @Autowired
     ProductService productService;
 
+    private String error = "";
+
     public static final String uploadDir = System.getProperty("user.dir")+"/src/main/resources/static/imagedata";
 
     @RequestMapping(method = RequestMethod.GET, path = "/")
@@ -44,6 +46,10 @@ public class ProductController {
         } else {
             return "redirect:/login";
         }
+        if(Boolean.FALSE.equals(error.isEmpty())) {
+            model.addAttribute("error", error);
+            error = "";
+        }
         return "createProduct";
     }
 
@@ -58,6 +64,7 @@ public class ProductController {
             return "redirect:/";
         }
         System.out.println("Error");
+        error = "Price is invalid! Only numbers are allowed.";
         return "redirect:/createProduct";
     }
 

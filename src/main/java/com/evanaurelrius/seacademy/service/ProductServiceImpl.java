@@ -39,7 +39,6 @@ public class ProductServiceImpl implements ProductService{
         try{
             Files.write(fileNameAndPath, image.getBytes());
         } catch (Exception e) {
-            e.printStackTrace();
             return false;
         }
 
@@ -56,7 +55,6 @@ public class ProductServiceImpl implements ProductService{
         try {
             BigInteger bn = new BigInteger(price);
         } catch (Exception e) {
-            e.printStackTrace();
             return false;
         }
         return true;
