@@ -44,13 +44,15 @@
         </div>
         </div>
     </nav>
+    
+    <div th:if="${error!=null}" class="alert alert-danger" role="alert" th:text="${error}"></div>
+    <div style="width:100%"
+    class="row row-cols-1 row-cols-xl-3 p-0 m-0 d-flex align-items-center justify-content-around position-absolute top-50 start-50 translate-middle">
+        <img class="col p-0" style="width:250px; height:250px" src="/images/logo.png" alt="SD SEA Sentosa Logo">
 
-    <div class="d-flex mt-2 flex-column align-items-center">
-        <img class="mb-3" style=" width:250px; height:250px" src="/images/logo.png" alt="SD SEA Sentosa Logo">
-        <div th:if="${error!=null}" class="alert alert-danger" role="alert" th:text="${error}"></div>
+        <div class="col p-0" style="height:50vh; width:1px; background-color: black;"></div>
 
-        <form th:action="@{/register}" th:object="${accountDto}" method="post" class="w-50">
-
+        <form class="col w-50" th:action="@{/register}" th:object="${accountDto}" method="post">
             <div class="input-group mb-2">
                 <span style="white-space: pre-wrap; text-align: start;"
                 class="input-group-text w-25" id="basic-addon1">Student's ID</span>
@@ -75,12 +77,12 @@
             </div>
 
             <span class="d-flex flex-column ">
-                <div class="d-flex my-3 w-100 justify-content-center">
-                    <button style="width:30%; background-color: var(--utama);"
+                <div class="d-flex my-3 w-100 justify-content-end">
+                    <button style="width:40%; background-color: var(--utama);"
                     type="submit" class="btn border-0 text-light">Register</button>
                 </div>
-                <div class="d-flex w-100 justify-content-center">
-                    <a href="/" style="width:30%;">
+                <div class="d-flex w-100 justify-content-end">
+                    <a href="/" style="width:40%;">
                         <button type="button" style="background-color: var(--cadangan);" class="w-100 btn border-0">Continue As Guest</button>
                     </a>
                 </div>
@@ -115,6 +117,8 @@
       }
       body{
         background: var(--bg);
+        height: 100vh;
+        width: 100vw;
       }
 </style>
 </html>

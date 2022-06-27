@@ -18,7 +18,6 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-
           <li class="nav-item">
             <a class="nav-link active text-light" aria-current="page" style="cursor: default;">Home</a>
           </li>
@@ -35,14 +34,13 @@
             <a class="nav-link text-light" href="/balanceBox">Balance Box</a>
           </li>
 
-            <li th:unless="${name}" class="nav-item">
-                <a class="nav-link text-light" href="/register">Sign up</a>
-            </li>
-
-      </ul>
+          <li th:unless="${name}" class="nav-item">
+              <a class="nav-link text-light" href="/register">Sign up</a>
+          </li>
+        </ul>
         <form th:if="${name}" class="d-flex">
-            <h5 class="me-4 d-flex align-items-center mb-0" th:text="${name}"></h5>
-            <a class="btn btn-danger btn-md me-3" href="/logout" role="button"> Log Out </a>
+          <h5 class="me-4 d-flex align-items-center mb-0" th:text="${name}"></h5>
+          <a class="btn btn-danger btn-md me-3" href="/logout" role="button"> Log Out </a>
         </form>
       </div>
     </div>
@@ -63,9 +61,9 @@
     </ul>
   </div>
   
-  <div class="row row-cols-2 row-cols-xl-3 g-4 w-100 mx-0 position-relative justify-content-center" id="main">
+  <div class="row row-cols-3 row-cols-xl-4 w-100 mx-0 position-relative justify-content-around" id="main">
       <!-- ex 1 -->
-      <div th:each="product: ${products}" class="card mb-3 px-0 mx-2" style="cursor: pointer; max-width: 540px; word-wrap: normal !important; white-space: nowrap;">
+      <div th:each="product: ${products}" class="card mb-3 mx-2 px-0" style="cursor: pointer; word-wrap: normal !important; white-space: nowrap;">
         <div class="row g-0">
           <!-- left -->
           <div class="col-md-4" style="position: relative;">
