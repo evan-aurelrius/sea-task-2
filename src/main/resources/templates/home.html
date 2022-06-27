@@ -10,7 +10,7 @@
 </head>
 
 <body>
-  <nav class="navbar navbar-expand-xl text-light navbar-dark" style="background-color: var(--utama);">
+  <nav id="header" class="navbar navbar-expand-xl text-light navbar-dark" style="background-color: var(--utama);">
     <div class="container-fluid">
       <a class="navbar-brand text-light" style="cursor: default;"><h3>Canteen</h3></a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -50,7 +50,7 @@
 
   <div th:if="${success!=null}" class="alert alert-success" role="alert" th:text="${success}"></div>
 
-  <div class="dropdown d-flex justify-content-end mt-2 mb-4 container-fluid py-2">
+  <div id="sort" class="dropdown d-flex justify-content-end mt-2 mb-4 container-fluid py-2">
     <a class="btn dropdown-toggle" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false" style="background: var(--cadangan);">
         <span class="pe-5" th:text="${'Sort by: ' + sortingMechanism}"></span>
     </a>
@@ -63,7 +63,7 @@
     </ul>
   </div>
   
-  <div class="row row-cols-2 row-cols-xl-3 g-4 w-100 mx-0 justify-content-center" id="main">
+  <div class="row row-cols-2 row-cols-xl-3 g-4 w-100 mx-0 position-relative justify-content-center" id="main">
       <!-- ex 1 -->
       <div th:each="product: ${products}" class="card mb-3 px-0 mx-2" style="cursor: pointer; max-width: 540px; word-wrap: normal !important; white-space: nowrap;">
         <div class="row g-0">
@@ -91,7 +91,7 @@
             <div class="card-body">
               <p style="overflow: hidden; text-overflow: ellipsis;" class="card-title fs-4 mb-0" th:text="${product.name}"></p>
               <b><p style="overflow: hidden; text-overflow: ellipsis;" class="card-text fs-4" th:text="${product.price}"></p></b>
-              <p class="card-text"><small class="text-muted" th:text="${'Product created at: ' + product.timestamp}"></small></p>
+              <p class="card-text"><small class="text-muted" th:utext="${'Product created at: <br>' + product.timestamp}"></small></p>
             </div>
           </div>
         </div>
@@ -157,32 +157,69 @@
         </div>
       </div>
   </div>
+
+  <div id="footer" class="container-fluid justify-content-center p-0" style="z-index:1; background-color: var(--utama)">
+    <footer class="py-1 w-100 d-flex justify-content-center">
+        <div class="w-50">
+            <ul class="nav justify-content-center border-bottom pb-3 mb-3 ">
+              <li class="nav-item"><a href="#" class="nav-link px-2 text-light">Home</a></li>
+              <li class="nav-item"><a href="#" class="nav-link px-2 text-light">Features</a></li>
+              <li class="nav-item"><a href="#" class="nav-link px-2 text-light">Pricing</a></li>
+              <li class="nav-item"><a href="#" class="nav-link px-2 text-light">FAQs</a></li>
+              <li class="nav-item"><a href="#" class="nav-link px-2 text-light">About</a></li>
+            </ul>
+            <p class="text-center text-light">© 2021 Company, Inc</p>
+        </div>
+    </footer>
+</div>
+
 </body>
+<script>
+  var mql = window.matchMedia('(max-width: 1110px)');
+  ubah();
+
+  mql.onchange = (e) => ubah();
+  
+  function ubah(){
+    var all = document.body.scrollHeight;
+    if(all < window.innerHeight){
+      console.log("untuk screen pendek");
+      var heightFooter = document.getElementById('footer').clientHeight;
+      document.getElementById('footer').style.top = window.innerHeight - heightFooter +'px';
+      document.getElementById('footer').style.position = 'absolute';
+    }
+    else{
+      console.log('untuk screen panjang')
+      document.getElementById('footer').style.top = 0+'px';
+      document.getElementById('footer').style.position = 'relative';
+    }
+  }
+</script>
 <style>
-      :root{
-        --gambar:url("https://imgs.search.brave.com/w3uU47vMjhdPKQNNHsQX9RkTLm4CBX5LvVYWTnOYq8A/rs:fit:711:225:1/g:ce/aHR0cHM6Ly90c2Uy/Lm1tLmJpbmcubmV0/L3RoP2lkPU9JUC4z/ZkZVdWNEWXU2NGo4/VkY2eVlsZGp3SGFF/OCZwaWQ9QXBp");
-        --utama:#85586F;
-        --cadangan:#DEB6AB;
-        --bg:#F8ECD1;
-      }
+  :root{
+    --gambar:url("https://imgs.search.brave.com/w3uU47vMjhdPKQNNHsQX9RkTLm4CBX5LvVYWTnOYq8A/rs:fit:711:225:1/g:ce/aHR0cHM6Ly90c2Uy/Lm1tLmJpbmcubmV0/L3RoP2lkPU9JUC4z/ZkZVdWNEWXU2NGo4/VkY2eVlsZGp3SGFF/OCZwaWQ9QXBp");
+    --utama:#85586F;
+    --cadangan:#DEB6AB;
+    --bg:#F8ECD1;
+  }
 
-      body{
-        background: var(--bg);
-      }
+  body{
+    background: var(--bg);
+  }
 
-      img{
-        background-repeat: no-repeat !important;
-        background-size: cover !important;
-        background-position: center !important;
-      }
+  img{
+    background-repeat: no-repeat !important;
+    background-size: cover !important;
+    background-position: center !important;
+  }
 
-      #buyProduct:focus + #scrollable #buyProductDisabled:focus + #scrollable{
-          border: 0px solid ;
-          display: flex;
-      }
+  #buyProduct:focus + #scrollable #buyProductDisabled:focus + #scrollable{
+      border: 0px solid ;
+      display: flex;
+  }
 
-      #buyProduct:hover #buyProductDisabled:hover{
-          font-size: 20px;
-      }
+  #buyProduct:hover #buyProductDisabled:hover{
+      font-size: 20px;
+  }
 </style>
 </html>

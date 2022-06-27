@@ -7,7 +7,7 @@
     <title>Balance</title>
 </head>
 <body>
-    <nav class="navbar navbar-expand-xl text-light navbar-dark" style="background-color: var(--utama);">
+    <nav id="header" class="navbar navbar-expand-xl text-light navbar-dark" style="background-color: var(--utama);">
         <div class="container-fluid">
             <a class="navbar-brand text-light" style="cursor: default;"><h3>Canteen</h3></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -46,16 +46,17 @@
             </div>
         </div>
     </nav>
-        <div th:if="${error!=null}" class="alert alert-danger" role="alert" th:text="${error}"></div>
-    <div class="position-absolute top-50 start-50 translate-middle"n style="width=100%">
-        <div class="modal-dialog" style="margin: 0; max-width: 75% d-flex align-item-center">
+    <div th:if="${error!=null}" class="alert alert-danger" role="alert" th:text="${error}"></div>
+
+    <div id="main" class="position-relative d-flex align-items-center justify-content-center">
+        <div style="margin: 0px; width:auto">
             <div class="modal-content border-dark border-3 px-5 py-3 w-100" style="background-color: var(--cadangan);">
                 <div class="modal-header d-block border-dark border-0">
                     <div>
                         <h1 class="modal-title">Balance</h1>
                     </div>
                     <div>
-                        <h1 class="modal-title" style="font-size: 50px; overflow-wrap: break-word;" th:text="${balance}"></h1>
+                        <h1 class="modal-title" style=" font-size: 50px; overflow-wrap: break-word; max-width: 70vw;" th:text="${balance}"></h1>
                     </div>
                 </div>
                 <div class="modal-footer justify-content-around border-dark border-0">
@@ -72,32 +73,32 @@
         </div>
     </div>
 
-    <!-- Modal 1 -->
-    <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="detailDialog" aria-hidden="true">
-        <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-            <h5 class="modal-title">Top Up</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <form th:action="@{/topup}" th:object="${balanceDto}" method="post">
-                <div class="modal-body">
-                    <div class="input-group mb-3">
-                        <span class="input-group-text">Rp</span>
-                        <input th:field="*{amount}" type="text" class="form-control" required>
-                    </div>
+    <!-- pop up model -->
+    <div class="modal fade " id="exampleModal1" tabindex="-1" aria-labelledby="detailDialog" aria-hidden="true">
+        <div class="modal-dialog ">
+            <div class="modal-content">
+                <div class="modal-header">
+                <h5 class="modal-title">Top Up</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-primary">Top Up</button>
+                    <form th:action="@{/topup}" th:object="${balanceDto}" method="post">
+                        <div class="modal-body">
+                            <div class="input-group mb-3">
+                                <span class="input-group-text">Rp</span>
+                                <input th:field="*{amount}" type="text" class="form-control" required>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Top Up</button>
+                        </div>
+                    </form>
                 </div>
-            </form>
             </div>
-        </div>
         </div>
     </div>
 
-    <!-- Modal 2 -->
+    <!-- wd model -->
     <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
         <div class="modal-content">
@@ -121,8 +122,29 @@
         </div>
     </div>
 
+    <div id="footer" class="container-fluid justify-content-center position-absolute p-0 m-0" style="top: 100%; transform: translateY(-100%); background-color: var(--utama)">
+        <footer class="py-1 w-100 d-flex justify-content-center">
+            <div class="w-50">
+                <ul class="nav justify-content-center border-bottom pb-3 mb-3 ">
+                  <li class="nav-item"><a href="#" class="nav-link px-2 text-light">Home</a></li>
+                  <li class="nav-item"><a href="#" class="nav-link px-2 text-light">Features</a></li>
+                  <li class="nav-item"><a href="#" class="nav-link px-2 text-light">Pricing</a></li>
+                  <li class="nav-item"><a href="#" class="nav-link px-2 text-light">FAQs</a></li>
+                  <li class="nav-item"><a href="#" class="nav-link px-2 text-light">About</a></li>
+                </ul>
+                <p class="text-center text-light">© 2021 Company, Inc</p>
+            </div>
+        </footer>
+    </div>
 </body>
 <link rel="stylesheet" href="/css/style.css">
+<script>
+    var heightFooter = document.getElementById('footer').clientHeight;
+    var heightHeader = document.getElementById('header').clientHeight;
+    var now = window.innerHeight - (heightFooter+heightHeader);
+    document.getElementById('main').style.height = now+"px";
+    document.getElementById('main').style.maxHeight = now+"px";
+</script>
 <script src="/js/bootstrap.js"></script>
 <style>
         :root{
