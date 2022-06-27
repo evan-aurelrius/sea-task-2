@@ -78,4 +78,11 @@ public class BalanceServiceImpl implements BalanceService{
         return result;
     }
 
+    @Override
+    public void setDefaultBalanceIfUnset() {
+        if(Boolean.FALSE.equals(balanceRepository.findById(1).isPresent())) {
+            balanceRepository.save(new Balance("Rp0"));
+        }
+    }
+
 }

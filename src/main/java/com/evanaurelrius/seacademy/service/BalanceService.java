@@ -14,4 +14,6 @@ public interface BalanceService {
 
     String subtractBalance(String other);
 
+    void setDefaultBalanceIfUnset();
+
 }

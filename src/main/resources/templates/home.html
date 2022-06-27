@@ -10,7 +10,7 @@
 </head>
 
 <body>
-  <nav class="navbar navbar-expand-lg text-light navbar-dark" style="background-color: var(--utama);">
+  <nav class="navbar navbar-expand-xl text-light navbar-dark" style="background-color: var(--utama);">
     <div class="container-fluid">
       <a class="navbar-brand text-light" style="cursor: default;"><h3>Canteen</h3></a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -65,30 +65,33 @@
   
   <div class="row row-cols-2 row-cols-xl-3 g-4 w-100 mx-0 justify-content-center" id="main">
       <!-- ex 1 -->
-      <div th:each="product: ${products}" class="card mb-3 px-0 mx-2" style="cursor: pointer;max-width: 540px;">
+      <div th:each="product: ${products}" class="card mb-3 px-0 mx-2" style="cursor: pointer; max-width: 540px; word-wrap: normal !important; white-space: nowrap;">
         <div class="row g-0">
-          <div class="col-md-4">
-            <img th:src="@{'/imagedata/' + ${product.imageSrc}}" style="max-width:75%; max-height:75%; vertical-align: middle;"
-              data-bs-toggle="modal" th:attr="data-bs-target='#detailDialog-'+${product.id}" class="rounded-start">
+          <!-- left -->
+          <div class="col-md-4" style="position: relative;">
+            <img th:src="@{'/imagedata/' + ${product.imageSrc}}" 
+            style="border:solid 2px black; border-bottom:0px; position: absolute; object-fit:contain; aspect-ratio: 1; z-index:1;"
+            data-bs-toggle="modal" th:attr="data-bs-target='#detailDialog-'+${product.id}" class="h-75 w-100">
+            <div class="h-75 w-100" th:style="'filter: blur(2px) ;background-image: url('+ @{'/imagedata/' + ${product.imageSrc}} +'); 
+            background-size: cover; background-position: center;'"></div>
 
             <button th:if="${name}" id="buyProduct" type="button" class="w-100 h-25" data-bs-toggle="modal" th:attr="data-bs-target='#buyDialog-'+${product.id}"
-                    style="z-index: 2; background: var(--cadangan);">
+            style="z-index: 2; background: var(--cadangan);">
                 Buy Product
             </button>
-              <form th:unless="${name}" action="/login" class="w-100 h-25">
-                  <button type="submit" class="w-100 h-100" id="buyProductDisabled"
-                          style="z-index: 2; background: var(--cadangan);">
-                      Buy Product
-                  </button>
-              </form>
-
+            <form th:unless="${name}" action="/login" class="w-100 h-25">
+              <button type="submit" class="w-100 h-100" id="buyProductDisabled"
+              style="z-index: 2; background: var(--cadangan);">
+                Buy Product
+              </button>
+            </form>
           </div>
-          <div class="col-md-8" data-bs-toggle="modal" th:attr="data-bs-target='#detailDialog-'+${product.id}">
+          <!-- right -->
+          <div class="col-md-8" data-bs-toggle="modal" th:attr="data-bs-target='#detailDialog-'+${product.id}" style="word-break:normal !important";>
             <div class="card-body">
-                <p class="card-title fs-4 mb-0" th:text="${product.name}"></p>
-                <b><p class="card-text fs-4" th:text="${product.price}"></p></b>
-                <p class="card-text" th:text="${product.description}"></p>
-                <p class="card-text"><small class="text-muted" th:text="${'Product created at: ' + product.timestamp}"></small></p>
+              <p style="overflow: hidden; text-overflow: ellipsis;" class="card-title fs-4 mb-0" th:text="${product.name}"></p>
+              <b><p style="overflow: hidden; text-overflow: ellipsis;" class="card-text fs-4" th:text="${product.price}"></p></b>
+              <p class="card-text"><small class="text-muted" th:text="${'Product created at: ' + product.timestamp}"></small></p>
             </div>
           </div>
         </div>
@@ -119,14 +122,19 @@
       <div th:each="product: ${products}" class="modal fade m-0" th:id="${'detailDialog-' + product.id}"  tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered">
           <div class="modal-content">
+            <!-- header -->
             <div class="modal-header">
               <h5 class="modal-title" th:text="${product.name}"></h5>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <img th:src="@{'/imagedata/' + ${product.imageSrc}}"
-            style="width: auto; height: auto; max-width: 100vw; max-height: 40vh; object-fit: contain;
-                    background-position: center; background-repeat: no-repeat;"
-            class="img-fluid card-img-top">
+            <!-- body -->
+            <div class="position-relative" style="width:100%; aspect-ratio: 1; position:relative;">
+              <img th:src="@{'/imagedata/' + ${product.imageSrc}}";
+              style="object-fit: contain; position:absolute; z-index:1"
+              class="img-fluid card-img-top w-100 h-100">
+              <div class="w-100 h-100" th:style="'filter: blur(4px);
+              background-image: url('+ @{'/imagedata/' + ${product.imageSrc}} +'); background-size: cover; background-position: center;'"></div>
+            </div>
             <div class="modal-body m-0" style="border-top: 1px solid black;">
               <div class="card border-0">
                 <div class="card-body">
@@ -136,14 +144,14 @@
                 </div>
               </div>
             </div>
+            <!-- foot -->
             <div class="modal-footer d-flex align-item-center justify-content-center">
               <button th:if="${name}" type="button" class="btn btn-primary w-50 text-center" data-bs-dismiss="modal" th:attr="data-bs-target='#buyDialog-'+${product.id}"
                       data-bs-toggle="modal">Buy Product</button>
                 <form action="/login" class="w-50">
                     <button th:unless="${name}" type="submit" class="btn btn-primary w-100 text-center" data-bs-dismiss="modal" th:attr="data-bs-target='#buyDialog-'+${product.id}"
-                            data-bs-toggle="modal">Buy Product</button>
+                    data-bs-toggle="modal">Buy Product</button>
                 </form>
-
             </div>
           </div>
         </div>

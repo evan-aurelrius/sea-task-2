@@ -7,7 +7,7 @@
     <title>Balance</title>
 </head>
 <body>
-    <nav class="navbar navbar-expand-xl text-light navbar-light bg-light">
+    <nav class="navbar navbar-expand-xl text-light navbar-dark" style="background-color: var(--utama);">
         <div class="container-fluid">
             <a class="navbar-brand text-light" style="cursor: default;"><h3>Canteen</h3></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -47,9 +47,9 @@
         </div>
     </nav>
         <div th:if="${error!=null}" class="alert alert-danger" role="alert" th:text="${error}"></div>
-    <div class="position-absolute top-50 start-50 translate-middle">
-        <div class="modal-dialog">
-            <div class="modal-content border-dark border-3 px-5 py-3" style="background-color: var(--cadangan)">
+    <div class="position-absolute top-50 start-50 translate-middle"n style="width=100%">
+        <div class="modal-dialog" style="margin: 0; max-width: 75% d-flex align-item-center">
+            <div class="modal-content border-dark border-3 px-5 py-3 w-100" style="background-color: var(--cadangan);">
                 <div class="modal-header d-block border-dark border-0">
                     <div>
                         <h1 class="modal-title">Balance</h1>
