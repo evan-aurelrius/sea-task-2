@@ -63,7 +63,7 @@
   
   <div class="row row-cols-2 row-cols-xl-3 g-4 w-100 mx-0 justify-content-center" id="main">
       <!-- ex 1 -->
-      <div th:each="product: ${products}" class="card mb-3 px-0 mx-2" style="cursor: pointer;max-width: 540px;">
+      <div th:each="product: ${products}" class="card mb-3 px-0 mx-2" style="cursor: pointer; max-width: 540px; word-wrap: normal !important; white-space: nowrap;">
         <div class="row g-0">
           <!-- left -->
           <div class="col-md-4" style="position: relative;">
@@ -72,7 +72,6 @@
             data-bs-toggle="modal" th:attr="data-bs-target='#detailDialog-'+${product.id}" class="h-75 w-100">
             <div class="h-75 w-100" th:style="'filter: blur(2px) ;background-image: url('+ @{'/imagedata/' + ${product.imageSrc}} +'); 
             background-size: cover; background-position: center;'"></div>
-            <!-- th:style="'background-image:url(' + ${dpurl} + ');'" -->
 
             <button th:if="${name}" id="buyProduct" type="button" class="w-100 h-25" data-bs-toggle="modal" th:attr="data-bs-target='#buyDialog-'+${product.id}"
             style="z-index: 2; background: var(--cadangan);">
@@ -86,12 +85,11 @@
             </form>
           </div>
           <!-- right -->
-          <div class="col-md-8" data-bs-toggle="modal" th:attr="data-bs-target='#detailDialog-'+${product.id}">
+          <div class="col-md-8" data-bs-toggle="modal" th:attr="data-bs-target='#detailDialog-'+${product.id}" style="word-break:normal !important";>
             <div class="card-body">
-                <p class="card-title fs-4 mb-0" th:text="${product.name}"></p>
-                <b><p class="card-text fs-4" th:text="${product.price}"></p></b>
-                <p class="card-text" th:text="${product.description}"></p>
-                <p class="card-text"><small class="text-muted" th:text="${'Product created at: ' + product.timestamp}"></small></p>
+              <p style="overflow: hidden; text-overflow: ellipsis;" class="card-title fs-4 mb-0" th:text="${product.name}"></p>
+              <b><p style="overflow: hidden; text-overflow: ellipsis;" class="card-text fs-4" th:text="${product.price}"></p></b>
+              <p class="card-text"><small class="text-muted" th:text="${'Product created at: ' + product.timestamp}"></small></p>
             </div>
           </div>
         </div>

@@ -52,7 +52,8 @@
         <form th:action="@{/login}" th:object="${accountDto}" method="post" class="w-50">
 
             <div class="input-group mb-2">
-                <span class="input-group-text w-25" id="basic-addon1">Student's ID</span>
+                <span style="white-space: pre-wrap; text-align: start;"
+                class="input-group-text w-25" id="basic-addon1">Student's ID</span>
                 <input th:field="*{sid}" type="text" class="form-control" placeholder=" " aria-describedby="basic-addon1" required>
             </div>
             <div class="input-group mb-2">

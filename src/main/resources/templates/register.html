@@ -52,15 +52,18 @@
         <form th:action="@{/register}" th:object="${accountDto}" method="post" class="w-50">
 
             <div class="input-group mb-2">
-                <span class="input-group-text w-25" id="basic-addon1">Student's ID</span>
+                <span style="white-space: pre-wrap; text-align: start;"
+                class="input-group-text w-25" id="basic-addon1">Student's ID</span>
                 <input th:field="*{sid}" type="text" class="form-control" placeholder=" " aria-describedby="basic-addon1" required>
             </div>
             <div class="input-group mb-2">
-                <span class="input-group-text w-25" id="basic-addon12">First name</span>
+                <span style="white-space: pre-wrap; text-align: start;"
+                class="input-group-text w-25" id="basic-addon12">First name</span>
                 <input th:field="*{first_name}" type="text" class="form-control" placeholder=" " aria-describedby="basic-addon2" required>
             </div>
             <div class="input-group mb-2">
-                <span class="input-group-text w-25" id="basic-addon3">Last name</span>
+                <span style="white-space: pre-wrap; text-align: start;"
+                class="input-group-text w-25" id="basic-addon3">Last name</span>
                 <input th:field="*{last_name}" type="text" class="form-control" placeholder=" " aria-describedby="basic-addon3">
             </div>
             <div class="input-group mb-2">

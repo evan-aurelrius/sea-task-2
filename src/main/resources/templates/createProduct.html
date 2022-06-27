@@ -52,16 +52,19 @@
                     <input th:field="*{imageSrc}" class="form-control" type="file" id="formFile" required>
                 </div>
                 <div class="input-group mb-3">
-                    <span class="input-group-text w-25" id="basic-addon1">Product name</span>
+                    <span style="white-space: pre-wrap; text-align: start;" 
+                    class="input-group-text w-25" id="basic-addon1">Product name</span>
                     <input th:field="*{name}" type="text" class="form-control" placeholder="Product Name" aria-label="Username" aria-describedby="basic-addon1" required>
                 </div>
                 <div class="input-group mb-3">
-                    <span class="input-group-text w-25" id="basic-addon2">Product price</span>
+                    <span style="white-space: pre-wrap; text-align: start;"
+                    class="input-group-text w-25" id="basic-addon2">Product price</span>
                     <input th:field="*{price}" type="text" class="form-control" placeholder="Product Price" aria-label="Username" aria-describedby="basic-addon1" required>
                 </div>
                 <div class="input-group mb-3">
-                    <span class="input-group-text w-25 align-items-start" id="basic-addon3">Product description</span>
-                    <textarea th:field="*{description}" class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Product Description"></textarea>
+                    <span style="white-space: pre-wrap; text-align: start;"
+                    class="input-group-text w-25 align-items-start" id="basic-addon3">Product description</span>
+                    <textarea maxlength="255" th:field="*{description}" class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Product Description"></textarea>
                 </div>
                 <div class="text-center">
                     <button type="submit" class="btn btn-lg" style="background-color: var(--utama); Color:white;">Create</button>
