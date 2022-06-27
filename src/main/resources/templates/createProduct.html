@@ -47,7 +47,7 @@
 
             <form th:action="@{/createProduct}" th:object="${productDto}" method="post" enctype="multipart/form-data">
                 <div class="mb-3">
-                    <label for="formFile" class="form-label">Please upload product image</label>
+                    <label for="formFile" class="form-label">Please upload product image (Max image size: 10MB)</label>
                     <input th:field="*{imageSrc}" class="form-control" type="file" id="formFile" required>
                 </div>
                 <div class="input-group mb-3">

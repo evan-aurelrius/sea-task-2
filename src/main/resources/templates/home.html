@@ -50,14 +50,14 @@
 
   <div class="dropdown d-flex justify-content-end mt-2 mb-4 container-fluid py-2">
     <a class="btn dropdown-toggle" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false" style="background: var(--cadangan);">
-        <span class="pe-5">Sort By</span>
+        <span class="pe-5" th:text="${'Sort by: ' + sortingMechanism}"></span>
     </a>
-    
+
     <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-      <li><a class="dropdown-item" href="#">Product name ascending</a></li>
-      <li><a class="dropdown-item" href="#">Product name descending</a></li>
-      <li><a class="dropdown-item" href="#">Oldest product</a></li>
-      <li><a class="dropdown-item" href="#">Latest product</a></li>
+      <li><a class="dropdown-item" href="/sort/nameAsc">A to Z</a></li>
+      <li><a class="dropdown-item" href="/sort/nameDesc">Z to A</a></li>
+      <li><a class="dropdown-item" href="/sort/timeDesc">Latest first</a></li>
+      <li><a class="dropdown-item" href="/sort/timeAsc">Oldest first</a></li>
     </ul>
   </div>
   
@@ -69,17 +69,24 @@
             <img th:src="@{'/imagedata/' + ${product.imageSrc}}" style="max-width:75%; max-height:75%; vertical-align: middle;"
               data-bs-toggle="modal" th:attr="data-bs-target='#detailDialog-'+${product.id}" class="rounded-start">
 
-            <button id="buyProduct" type="button" class="w-100 h-25" data-bs-toggle="modal" th:attr="data-bs-target='#buyDialog-'+${product.id}"
+            <button th:if="${name}" id="buyProduct" type="button" class="w-100 h-25" data-bs-toggle="modal" th:attr="data-bs-target='#buyDialog-'+${product.id}"
                     style="z-index: 2; background: var(--cadangan);">
                 Buy Product
             </button>
+              <form th:unless="${name}" action="/login" class="w-100 h-25">
+                  <button type="submit" class="w-100 h-100" id="buyProductDisabled"
+                          style="z-index: 2; background: var(--cadangan);">
+                      Buy Product
+                  </button>
+              </form>
+
           </div>
           <div class="col-md-8" data-bs-toggle="modal" th:attr="data-bs-target='#detailDialog-'+${product.id}">
             <div class="card-body">
                 <p class="card-title fs-4 mb-0" th:text="${product.name}"></p>
                 <b><p class="card-text fs-4" th:text="${product.price}"></p></b>
                 <p class="card-text" th:text="${product.description}"></p>
-                <p class="card-text"><small class="text-muted" th:text="${'Product created at: ' + product.date}"></small></p>
+                <p class="card-text"><small class="text-muted" th:text="${'Product created at: ' + product.timestamp}"></small></p>
             </div>
           </div>
         </div>
@@ -121,18 +128,23 @@
                 <div class="card-body">
                   <h5 class="card-title" th:text="${product.price}"></h5>
                   <p class="card-text" th:text="${product.description}" style="white-space: pre-wrap;"></p>
-                  <p class="card-text"><small class="text-muted" th:text="${'Product created at: ' + product.date}"></small></p>
+                  <p class="card-text"><small class="text-muted" th:text="${'Product created at: ' + product.timestamp}"></small></p>
                 </div>
               </div>
             </div>
             <div class="modal-footer d-flex align-item-center justify-content-center">
-              <button type="button" class="btn btn-primary w-50 text-center" data-bs-dismiss="modal" th:attr="data-bs-target='#buyDialog-'+${product.id}"
+              <button th:if="${name}" type="button" class="btn btn-primary w-50 text-center" data-bs-dismiss="modal" th:attr="data-bs-target='#buyDialog-'+${product.id}"
                       data-bs-toggle="modal">Buy Product</button>
+                <form action="/login" class="w-50">
+                    <button th:unless="${name}" type="submit" class="btn btn-primary w-100 text-center" data-bs-dismiss="modal" th:attr="data-bs-target='#buyDialog-'+${product.id}"
+                            data-bs-toggle="modal">Buy Product</button>
+                </form>
+
             </div>
           </div>
         </div>
       </div>
-  </div>>
+  </div>
 </body>
 <style>
       :root{
@@ -152,12 +164,12 @@
         background-position: center !important;
       }
 
-      #buyProduct:focus + #scrollable{
+      #buyProduct:focus + #scrollable #buyProductDisabled:focus + #scrollable{
           border: 0px solid ;
           display: flex;
       }
 
-      #buyProduct:hover{
+      #buyProduct:hover #buyProductDisabled:hover{
           font-size: 20px;
       }
 </style>

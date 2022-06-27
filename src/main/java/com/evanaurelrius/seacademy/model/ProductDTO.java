@@ -4,7 +4,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.sql.Date;
+import java.sql.Timestamp;
 
 @Data
 @NoArgsConstructor
@@ -18,13 +18,13 @@ public class ProductDTO {
 
     private String price;
 
-    private Date date;
+    private Timestamp timestamp;
 
-    public ProductDTO(String name, MultipartFile imageSrc, String description, String price, Date date) {
+    public ProductDTO(String name, MultipartFile imageSrc, String description, String price, Timestamp timestamp) {
         this.name = name;
         this.imageSrc = imageSrc;
         this.description = description;
         this.price = price;
-        this.date = date;
+        this.timestamp = timestamp;
     }
 }

@@ -12,4 +12,12 @@ public interface ProductService {
 
     List<Product> getAllProducts();
 
+    List<Product> getAllProductsByNameAsc();
+
+    List<Product> getAllProductsByNameDesc();
+
+    List<Product> getAllProductsByTimestampAsc();
+
+    List<Product> getAllProductsByTimestampDesc();
+
 }

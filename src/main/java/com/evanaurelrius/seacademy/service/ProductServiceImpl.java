@@ -10,7 +10,7 @@ import java.math.BigInteger;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.sql.Date;
+import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.regex.Matcher;
@@ -29,9 +29,8 @@ public class ProductServiceImpl implements ProductService{
         if(Boolean.FALSE.equals(isValidNumber(price))) return false;
 
         Product newProduct = new Product();
-        java.util.Date dNow = new java.util.Date();
         SimpleDateFormat ft = new SimpleDateFormat("yyMMddhhmmssMs");
-        String datetime = ft.format(dNow);
+        String datetime = ft.format(new Timestamp(System.currentTimeMillis()));
         StringBuilder fileNames = new StringBuilder();
         String fileName = name+datetime+image.getOriginalFilename().substring(image.getOriginalFilename().length()-4);
         Path fileNameAndPath = Paths.get(uploadDir, fileName);
@@ -46,7 +45,7 @@ public class ProductServiceImpl implements ProductService{
         newProduct.setName(name);
         newProduct.setDescription(desc);
         newProduct.setPrice(convertToProper(price));
-        newProduct.setDate(new Date(System.currentTimeMillis()));
+        newProduct.setTimestamp(new Timestamp(System.currentTimeMillis()));
         productRepository.save(newProduct);
         return true;
     }
@@ -76,4 +75,16 @@ public class ProductServiceImpl implements ProductService{
     public List<Product> getAllProducts() {
         return productRepository.findAll();
     }
+
+    @Override
+    public List<Product> getAllProductsByNameAsc() { return (List<Product>) productRepository.findAllByOrderByNameAsc(); }
+
+    @Override
+    public List<Product> getAllProductsByNameDesc() { return (List<Product>) productRepository.findAllByOrderByNameDesc(); }
+
+    @Override
+    public List<Product> getAllProductsByTimestampAsc() { return (List<Product>) productRepository.findAllByOrderByTimestampAsc(); }
+
+    @Override
+    public List<Product> getAllProductsByTimestampDesc() { return (List<Product>) productRepository.findAllByOrderByTimestampDesc(); }
 }

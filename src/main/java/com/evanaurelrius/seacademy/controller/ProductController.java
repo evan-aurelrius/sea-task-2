@@ -7,12 +7,10 @@ import com.evanaurelrius.seacademy.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -31,7 +29,39 @@ public class ProductController {
         if(fullName!=null){
             model.addAttribute("name", fullName);
         }
-        List<Product> products = productService.getAllProducts();
+        List<Product> products = productService.getAllProductsByTimestampDesc();
+        model.addAttribute("sortingMechanism", "Latest first");
+        model.addAttribute("products", products);
+        return "home";
+    }
+
+    @GetMapping(path = "/sort/{sortingMechanism}")
+    public String productSort(@PathVariable("sortingMechanism") String sortBy, Model model, HttpSession session) {
+        String fullName = (String) session.getAttribute("fullName");
+        if(fullName!=null){
+            model.addAttribute("name", fullName);
+        }
+        List<Product> products = new ArrayList<>();
+        String mechanism = "";
+        switch (sortBy) {
+            case "nameAsc":
+                products = productService.getAllProductsByNameAsc();
+                mechanism = "A to Z";
+                break;
+            case "nameDesc":
+                products = productService.getAllProductsByNameDesc();
+                mechanism = "Z to A";
+                break;
+            case "timeAsc":
+                products = productService.getAllProductsByTimestampAsc();
+                mechanism = "Oldest first";
+                break;
+            case "timeDesc":
+                products = productService.getAllProductsByTimestampDesc();
+                mechanism = "Latest first";
+                break;
+        }
+        model.addAttribute("sortingMechanism", mechanism);
         model.addAttribute("products", products);
         return "home";
     }

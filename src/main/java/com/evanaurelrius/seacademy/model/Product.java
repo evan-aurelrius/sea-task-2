@@ -1,10 +1,7 @@
 package com.evanaurelrius.seacademy.model;
 
-import org.hibernate.annotations.Type;
-import org.springframework.web.multipart.MultipartFile;
-
 import javax.persistence.*;
-import java.sql.Date;
+import java.sql.Timestamp;
 
 @Entity
 @Table(name = "product")
@@ -26,18 +23,18 @@ public class Product {
     @Column(name = "price")
     private String price;
 
-    @Column(name = "date")
-    private Date date;
+    @Column(name = "timestamp")
+    private Timestamp timestamp;
 
     public Product() {
     }
 
-    public Product(String name, String imageSrc, String description, String price, Date date) {
+    public Product(String name, String imageSrc, String description, String price, Timestamp timestamp) {
         this.name = name;
         this.imageSrc = imageSrc;
         this.description = description;
         this.price = price;
-        this.date = date;
+        this.timestamp = timestamp;
     }
 
     public long getId() {
@@ -80,11 +77,11 @@ public class Product {
         this.price = price;
     }
 
-    public Date getDate() {
-        return date;
+    public Timestamp getTimestamp() {
+        return timestamp;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
+    public void setTimestamp(Timestamp timestamp) {
+        this.timestamp = timestamp;
     }
 }

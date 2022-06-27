@@ -9,4 +9,13 @@ import java.util.Optional;
 @Repository
 public interface ProductRepository extends JpaRepository<Product, Long> {
     Optional<Product> findById(int id);
+
+    Iterable<Product> findAllByOrderByNameAsc();
+
+    Iterable<Product> findAllByOrderByNameDesc();
+
+    Iterable<Product> findAllByOrderByTimestampAsc();
+
+    Iterable<Product> findAllByOrderByTimestampDesc();
+
 }
