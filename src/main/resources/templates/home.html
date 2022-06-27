@@ -48,6 +48,8 @@
     </div>
   </nav>
 
+  <div th:if="${success!=null}" class="alert alert-success" role="alert" th:text="${success}"></div>
+
   <div class="dropdown d-flex justify-content-end mt-2 mb-4 container-fluid py-2">
     <a class="btn dropdown-toggle" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false" style="background: var(--cadangan);">
         <span class="pe-5" th:text="${'Sort by: ' + sortingMechanism}"></span>
@@ -104,8 +106,10 @@
                 Are you sure want to buy this product?
             </div>
             <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
-            <button type="button" class="btn btn-primary">Yes</button>
+                <form th:action="@{'/buy/' + ${product.id}}">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+                    <button type="submit" class="btn btn-primary">Yes</button>
+                </form>
             </div>
         </div>
         </div>

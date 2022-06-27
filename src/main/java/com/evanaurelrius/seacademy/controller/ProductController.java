@@ -19,7 +19,7 @@ public class ProductController {
     @Autowired
     ProductService productService;
 
-    private String error = "";
+    private String error = "", success = "";
 
     public static final String uploadDir = System.getProperty("user.dir")+"/src/main/resources/static/imagedata";
 
@@ -28,6 +28,10 @@ public class ProductController {
         String fullName = (String) session.getAttribute("fullName");
         if(fullName!=null){
             model.addAttribute("name", fullName);
+        }
+        if(Boolean.FALSE.equals(success.isEmpty())) {
+            model.addAttribute("success", success);
+            success = "";
         }
         List<Product> products = productService.getAllProductsByTimestampDesc();
         model.addAttribute("sortingMechanism", "Latest first");
@@ -98,5 +102,17 @@ public class ProductController {
         return "redirect:/createProduct";
     }
 
+    @GetMapping(path = "/buy/{productId}")
+    public String buyProduct(@PathVariable("productId") String productId, Model model, HttpSession session) {
+        String fullName = (String) session.getAttribute("fullName");
+        if(fullName==null){
+            return "redirect:/login";
+        }
+        if(productService.buyProduct(productId) != null) {
+            success = "Thank you for purchasing our products! May the SEA be with you.";
+        }
+        model.addAttribute("name", fullName);
+        return "redirect:/";
+    }
 
 }

@@ -20,4 +20,6 @@ public interface ProductService {
 
     List<Product> getAllProductsByTimestampDesc();
 
+    Product buyProduct(String productId);
+
 }

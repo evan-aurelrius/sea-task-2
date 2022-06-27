@@ -22,6 +22,9 @@ public class ProductServiceImpl implements ProductService{
     @Autowired
     ProductRepository productRepository;
 
+    @Autowired
+    BalanceService balanceService;
+
     public static final String uploadDir = System.getProperty("user.dir")+"/src/main/resources/static/imagedata";
 
     @Override
@@ -67,8 +70,26 @@ public class ProductServiceImpl implements ProductService{
         if(result.substring(0,1).equals(".")) {
             result = result.substring(1);
         }
-        result = "Rp "+result;
+        result = "Rp"+result;
         return result;
+    }
+
+    @Override
+    public Product buyProduct(String productId) {
+        Product bought = productRepository.findById(Long.parseLong(productId)).orElse(null);
+        if(bought != null) {
+            String rawPrice = bought.getPrice().substring(2).replace(".","");
+            String currentBalance = balanceService.getBalance().getCurrentBalance();
+            if(currentBalance.equals(balanceService.addBalance(rawPrice))) {
+                return null;
+            }
+            deleteProduct(bought);
+        }
+        return bought;
+    }
+
+    private void deleteProduct(Product product) {
+        productRepository.delete(product);
     }
 
     @Override
@@ -87,4 +108,5 @@ public class ProductServiceImpl implements ProductService{
 
     @Override
     public List<Product> getAllProductsByTimestampDesc() { return (List<Product>) productRepository.findAllByOrderByTimestampDesc(); }
+
 }
