@@ -53,11 +53,11 @@
 
             <div class="input-group mb-2">
                 <span class="input-group-text w-25" id="basic-addon1">Student's ID</span>
-                <input th:field="*{sid}" type="text" class="form-control" placeholder=" " aria-describedby="basic-addon1" required>
+                <input th:field="*{sid}" type="text" class="form-control" placeholder=" " aria-describedby="basic-addon1" required maxlength="5">
             </div>
             <div class="input-group mb-2">
                 <span class="input-group-text w-25" id="basic-addon12">First name</span>
-                <input th:field="*{first_name}" type="text" class="form-control" placeholder=" " aria-describedby="basic-addon2" required>
+                <input th:field="*{first_name}" type="text" class="form-control" placeholder=" " aria-describedby="basic-addon2" required maxlength="127">
             </div>
             <div class="input-group mb-2">
                 <span class="input-group-text w-25" id="basic-addon3">Last name</span>
@@ -65,7 +65,7 @@
             </div>
             <div class="input-group mb-2">
                 <span class="input-group-text w-25" id="basic-addon4">Password</span>
-                <input th:field="*{password}" type="text" class="form-control" placeholder=" " aria-describedby="basic-addon4" required>
+                <input th:field="*{password}" type="text" class="form-control" placeholder=" " aria-describedby="basic-addon4" required maxlength="127">
             </div>
             <div>
                 Already have an account? <a style="text-decoration: none; color:var(--utama)" href="/login"><b>Login</b></a>
