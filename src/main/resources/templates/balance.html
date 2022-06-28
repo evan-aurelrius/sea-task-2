@@ -36,6 +36,10 @@
                         <a class="nav-link text-light" href="/register">Sign up</a>
                     </li>
 
+                    <li th:if="${name}" class="nav-item">
+                        <a class="nav-link text-light" href="/transaction">Transaction</a>
+                    </li>
+
                 </ul>
 
                 <form th:if="${name}" class="d-flex">

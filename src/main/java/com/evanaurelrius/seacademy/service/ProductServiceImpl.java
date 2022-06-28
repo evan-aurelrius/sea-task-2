@@ -75,7 +75,7 @@ public class ProductServiceImpl implements ProductService{
     }
 
     @Override
-    public Product buyProduct(String productId) {
+    public Product buyProduct(String productId, long ownerId) {
         Product bought = productRepository.findById(Long.parseLong(productId)).orElse(null);
         if(bought != null) {
             String rawPrice = bought.getPrice().substring(2).replace(".","");
@@ -83,13 +83,16 @@ public class ProductServiceImpl implements ProductService{
             if(currentBalance.equals(balanceService.addBalance(rawPrice))) {
                 return null;
             }
-            deleteProduct(bought);
+            changeProductStatus(bought, ownerId);
         }
         return bought;
     }
 
-    private void deleteProduct(Product product) {
-        productRepository.delete(product);
+    private void changeProductStatus(Product product, long ownerId) {
+        product.setForsale(false);
+        product.setOwnerid(ownerId);
+        product.setTimestamp(new Timestamp(System.currentTimeMillis()));
+        productRepository.save(product);
     }
 
     @Override
@@ -108,5 +111,8 @@ public class ProductServiceImpl implements ProductService{
 
     @Override
     public List<Product> getAllProductsByTimestampDesc() { return (List<Product>) productRepository.findAllByOrderByTimestampDesc(); }
+
+    @Override
+    public List<Product> getAllPurchasedProduct(long ownerId) { return (List<Product>) productRepository.findAllMyProductByOrderByTimestampDesc(ownerId); }
 
 }

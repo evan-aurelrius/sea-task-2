@@ -34,6 +34,11 @@
                 <li th:unless="${name}" class="nav-item">
                     <a class="nav-link text-light" href="/register">Sign up</a>
                 </li>
+
+                <li th:if="${name}" class="nav-item">
+                    <a class="nav-link text-light" href="/transaction">Transaction</a>
+                </li>
+
             </ul>
                 <form th:if="${name}" class="d-flex">
                     <h5 class="me-4 d-flex align-items-center mb-0" th:text="${name}"></h5>

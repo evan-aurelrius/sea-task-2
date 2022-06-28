@@ -26,6 +26,12 @@ public class Product {
     @Column(name = "timestamp")
     private Timestamp timestamp;
 
+    @Column(name = "forsale")
+    private Boolean forsale = true;
+
+    @Column(name = "ownerid")
+    private long ownerid;
+
     public Product() {
     }
 
@@ -41,7 +47,7 @@ public class Product {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -84,4 +90,23 @@ public class Product {
     public void setTimestamp(Timestamp timestamp) {
         this.timestamp = timestamp;
     }
+
+    public Boolean getForsale() {
+        return forsale;
+    }
+
+    public Product setForsale(Boolean forsale) {
+        this.forsale = forsale;
+        return this;
+    }
+
+    public long getOwnerid() {
+        return ownerid;
+    }
+
+    public Product setOwnerid(long id) {
+        this.ownerid = id;
+        return this;
+    }
+
 }

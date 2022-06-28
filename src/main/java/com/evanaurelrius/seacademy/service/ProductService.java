@@ -20,6 +20,8 @@ public interface ProductService {
 
     List<Product> getAllProductsByTimestampDesc();
 
-    Product buyProduct(String productId);
+    List<Product> getAllPurchasedProduct(long ownerId);
+
+    Product buyProduct(String productId, long ownerId);
 
 }

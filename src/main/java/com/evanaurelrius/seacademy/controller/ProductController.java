@@ -104,11 +104,12 @@ public class ProductController {
 
     @GetMapping(path = "/buy/{productId}")
     public String buyProduct(@PathVariable("productId") String productId, Model model, HttpSession session) {
+        Account currentUser = (Account) session.getAttribute("currentUser");
         String fullName = (String) session.getAttribute("fullName");
         if(fullName==null){
             return "redirect:/login";
         }
-        if(productService.buyProduct(productId) != null) {
+        if(productService.buyProduct(productId, currentUser.getId()) != null) {
             success = "Thank you for purchasing our products! May the SEA be with you.";
         }
         model.addAttribute("name", fullName);
