@@ -5,14 +5,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Login</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" media="screen and (max-width: 400px)" href="/css/loginPhone.css">
+    <style>
+        :root{
+            --utama:#85586F;
+            --cadangan:#DEB6AB;
+            --bg:#F8ECD1;
+        }
+        body{
+            background: var(--bg);
+        }
+    </style>
 </head>
 <body>
     <nav class="navbar navbar-expand-xl text-light navbar-dark" style="background-color: var(--utama);">
         <div class="container-fluid">
-          <a class="navbar-brand text-light" style="cursor: default;"><h3>Canteen</h3></a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
+            <a class="navbar-brand text-light" style="cursor: default;"><h3>Canteen</h3></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 
@@ -79,9 +91,9 @@
     </div>
 
     <div id="footer" class="container-fluid justify-content-center position-absolute p-0 m-0" style="top: 100%; transform: translateY(-100%); background-color: var(--utama)">
-        <footer class="py-1 w-100 d-flex justify-content-center">
-            <div class="w-50">
-                <ul class="nav justify-content-center border-bottom pb-3 mb-3 ">
+        <footer class="py-1 w-100">
+            <div class="w-100 d-flex flex-column align-items-center justify-content-center">
+                <ul class="nav justify-content-center mb-3">
                     <li class="nav-item"><a href="https://mail.google.com/mail/?view=cm&fs=1&to=evan.aurelrius@ui.ac.id&su=Hii"
                                             class="nav-link px-2 text-light">evan.aurelrius@ui.ac.id</a></li>
                     <li class="nav-item"><a href="https://wa.me/6285271321514"
@@ -89,22 +101,12 @@
                     <li class="nav-item"><a href="https://www.instagram.com/evanaurelrius/"
                                             class="nav-link px-2 text-light">@evanaurelrius</a></li>
                 </ul>
+                <div class="w-50" style="border-top: 1px solid white"></div>
                 <p class="text-center text-light">© Mahasiswa Fasilkom Universitas Indonesia 2020, Evan Aurelrius</p>
             </div>
         </footer>
     </div>
 
 </body>
-<link rel="stylesheet" href="/css/style.css">
 <script src="/js/bootstrap.js"></script>
-<style>
-    :root{
-        --utama:#85586F;
-        --cadangan:#DEB6AB;
-        --bg:#F8ECD1;
-      }
-      body{
-        background: var(--bg);
-      }
-</style>
 </html>
