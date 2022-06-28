@@ -10,7 +10,7 @@
 </head>
 
 <body>
-  <nav id="header" class="navbar navbar-expand-xl text-light navbar-dark" style="background-color: var(--utama);">
+  <nav id="header" class="navbar navbar-expand-xl text-light navbar-dark mb-3" style="background-color: var(--utama);">
     <div class="container-fluid">
       <a class="navbar-brand text-light" style="cursor: default;"><h3>Canteen</h3></a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -46,76 +46,32 @@
     </div>
   </nav>
 
-  <div th:if="${success!=null}" class="alert alert-success" role="alert" th:text="${success}"></div>
-
-  <div id="sort" class="dropdown d-flex justify-content-end mt-2 mb-4 container-fluid py-2">
-    <a class="btn dropdown-toggle" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false" style="background: var(--cadangan);">
-        <span class="pe-5" th:text="${'Sort by: ' + sortingMechanism}"></span>
-    </a>
-
-    <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-      <li><a class="dropdown-item" href="/sort/nameAsc">A to Z</a></li>
-      <li><a class="dropdown-item" href="/sort/nameDesc">Z to A</a></li>
-      <li><a class="dropdown-item" href="/sort/timeDesc">Latest first</a></li>
-      <li><a class="dropdown-item" href="/sort/timeAsc">Oldest first</a></li>
-    </ul>
-  </div>
-  
-  <div class="row row-cols-3 row-cols-xl-4 w-100 mx-0 position-relative justify-content-around" id="main">
+  <!-- <div class="container-fluid"> -->
+    <div class="row row-cols-3 row-cols-xl-3 w-100 mx-0" id="main">
       <!-- ex 1 -->
-      <div th:each="product: ${products}" class="card mb-3 mx-2 px-0" style="cursor: pointer; word-wrap: normal !important; white-space: nowrap;">
+      <div th:each="product: ${products}" class="card p-0 text-light" style=" background-color: var(--utama); cursor: pointer; word-wrap: normal !important; white-space: nowrap;">
         <div class="row g-0">
           <!-- left -->
-          <div class="col-md-4" style="position: relative;">
-            <img th:src="@{'/imagedata/' + ${product.imageSrc}}" 
-            style="border:solid 2px black; border-bottom:0px; position: absolute; object-fit:contain; aspect-ratio: 1; z-index:1;"
-            data-bs-toggle="modal" th:attr="data-bs-target='#detailDialog-'+${product.id}" class="h-75 w-100">
-            <div class="h-75 w-100" th:style="'filter: blur(2px) ;background-image: url('+ @{'/imagedata/' + ${product.imageSrc}} +'); 
+          <div class="col-md-3 d-flex" style="position: relative; align-items: center; backdrop-filter: blur(1px);">
+            <img th:src="@{'/imagedata/' + ${product.imageSrc}}"
+            th:style="'object-fit:contain; aspect-ratio: 1; backdrop-filter: blur(10px);'"
+            data-bs-toggle="modal" th:attr="data-bs-target='#detailDialog-'+${product.id}" class="h-100 w-100">
+            <div class="h-100 w-100" th:style="'position:absolute; z-index:-1;background-image: url('+ @{'/imagedata/' + ${product.imageSrc}} +'); 
             background-size: cover; background-position: center;'"></div>
-
-            <button th:if="${name}" id="buyProduct" type="button" class="w-100 h-25" data-bs-toggle="modal" th:attr="data-bs-target='#buyDialog-'+${product.id}"
-            style="z-index: 2; background: var(--cadangan);">
-                Buy Product
-            </button>
-            <form th:unless="${name}" action="/login" class="w-100 h-25">
-              <button type="submit" class="w-100 h-100" id="buyProductDisabled"
-              style="z-index: 2; background: var(--cadangan);">
-                Buy Product
-              </button>
-            </form>
           </div>
           <!-- right -->
-          <div class="col-md-8" data-bs-toggle="modal" th:attr="data-bs-target='#detailDialog-'+${product.id}" style="word-break:normal !important";>
+          <div class="col-md-7" data-bs-toggle="modal" th:attr="data-bs-target='#detailDialog-'+${product.id}" style="word-break:normal !important";>
             <div class="card-body">
               <p style="overflow: hidden; text-overflow: ellipsis;" class="card-title fs-4 mb-0" th:text="${product.name}"></p>
               <b><p style="overflow: hidden; text-overflow: ellipsis;" class="card-text fs-4" th:text="${product.price}"></p></b>
-              <p class="card-text"><small class="text-muted" th:utext="${'Product created at: <br>' + product.timestamp}"></small></p>
+              <p class="card-text"><small th:utext="${'Purchased time: <br>' + product.timestamp}"></small></p>
             </div>
           </div>
         </div>
       </div>
-
-      <!-- pop up buy -->
-      <div th:each="product: ${products}" class="modal fade" th:id="${'buyDialog-' + product.id}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel" th:text="${product.name}"></h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                Are you sure want to buy this product?
-            </div>
-            <div class="modal-footer">
-                <form th:action="@{'/buy/' + ${product.id}}">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
-                    <button type="submit" class="btn btn-primary">Yes</button>
-                </form>
-            </div>
-        </div>
-        </div>
-      </div>
-
+    </div>
+  <!-- </div> -->
+      
       <!-- popup detail -->
       <div th:each="product: ${products}" class="modal fade m-0" th:id="${'detailDialog-' + product.id}"  tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered">
@@ -186,11 +142,13 @@
       var heightFooter = document.getElementById('footer').clientHeight;
       document.getElementById('footer').style.top = window.innerHeight - heightFooter +'px';
       document.getElementById('footer').style.position = 'absolute';
+      document.body.style.overflow = 'hidden';
     }
     else{
       console.log('untuk screen panjang')
       document.getElementById('footer').style.top = 0+'px';
       document.getElementById('footer').style.position = 'relative';
+      document.body.style.overflow = 'auto';
     }
   }
 </script>
