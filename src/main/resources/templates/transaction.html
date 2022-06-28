@@ -50,16 +50,15 @@
     </div>
 </nav>
 
-<!-- <div class="container-fluid"> -->
-<div class="row row-cols-3 row-cols-xl-3 w-100 mx-0" id="main">
+<div class="row row-cols-3 m-0 row-cols-xl-4 gap-3 d-flex justify-content-center" id="main">
     <!-- ex 1 -->
-    <div th:each="product: ${products}" class="card p-0 text-light" style=" background-color: var(--utama); cursor: pointer; word-wrap: normal !important; white-space: nowrap;">
+    <div th:each="product: ${products}" class="p-0 text-light" style=" background-color: var(--utama); cursor: pointer; word-wrap: normal !important; white-space: nowrap;">
         <div class="row g-0">
             <!-- left -->
-            <div class="col-md-3 d-flex" style="position: relative; align-items: center; backdrop-filter: blur(1px);">
+            <div class="col-md-4 d-flex" style="position: relative; align-items: center; backdrop-filter: blur(1px);">
                 <img th:src="@{'/imagedata/' + ${product.imageSrc}}"
-                     th:style="'object-fit:contain; aspect-ratio: 1; backdrop-filter: blur(10px);'"
-                     data-bs-toggle="modal" th:attr="data-bs-target='#detailDialog-'+${product.id}" class="h-100 w-100">
+                    th:style="'object-fit:contain; aspect-ratio: 1; backdrop-filter: blur(10px);'"
+                    data-bs-toggle="modal" th:attr="data-bs-target='#detailDialog-'+${product.id}" class="h-100 w-100">
                 <div class="h-100 w-100" th:style="'position:absolute; z-index:-1;background-image: url('+ @{'/imagedata/' + ${product.imageSrc}} +');
             background-size: cover; background-position: center;'"></div>
             </div>
@@ -74,7 +73,6 @@
         </div>
     </div>
 </div>
-<!-- </div> -->
 
 <!-- popup detail -->
 <div th:each="product: ${products}" class="modal fade m-0" th:id="${'detailDialog-' + product.id}"  tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -146,13 +144,11 @@
       var heightFooter = document.getElementById('footer').clientHeight;
       document.getElementById('footer').style.top = window.innerHeight - heightFooter +'px';
       document.getElementById('footer').style.position = 'absolute';
-      document.body.style.overflow = 'hidden';
     }
     else{
       console.log('untuk screen panjang')
       document.getElementById('footer').style.top = 0+'px';
       document.getElementById('footer').style.position = 'relative';
-      document.body.style.overflow = 'auto';
     }
   }
 </script>
@@ -166,21 +162,6 @@
 
   body{
     background: var(--bg);
-  }
-
-  img{
-    background-repeat: no-repeat !important;
-    background-size: cover !important;
-    background-position: center !important;
-  }
-
-  #buyProduct:focus + #scrollable #buyProductDisabled:focus + #scrollable{
-      border: 0px solid ;
-      display: flex;
-  }
-
-  #buyProduct:hover #buyProductDisabled:hover{
-      font-size: 20px;
   }
 </style>
 </html>
