@@ -18,6 +18,7 @@
 
         body {
             background: var(--bg);
+            height: 100vh;
         }
     </style>
 </head>
@@ -81,7 +82,7 @@
             <div id="sorting" class="row">
                 <div id="sort" class="dropdown d-flex justify-content-end">
                     <a class="btn dropdown-toggle" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown"
-                        aria-expanded="false" style="background: var(--cadangan);">
+                        aria-expanded="false" style="background: var(--cadangan); margin-top: 2vh;">
                         <span class="pe-2" th:text="${'Sort by: ' + sortingMechanism}"></span>
                     </a>
 
@@ -152,7 +153,7 @@
                         </li>
                     </ul>
                     <div class="w-50" style="border-top: 1px solid white"></div>
-                    <p class="text-center text-light m-0" style="padding: 8px;">
+                    <p class="text-center text-light m-0">
                         © Mahasiswa Fasilkom Universitas Indonesia 2020, Evan Aurelrius
                     </p>
                 </div>
