@@ -3,154 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Balance</title>
-</head>
-<body>
-    <nav id="header" class="navbar navbar-expand-xl text-light navbar-dark" style="background-color: var(--utama);">
-        <div class="container-fluid">
-            <a class="navbar-brand text-light" style="cursor: default;"><h3>Canteen</h3></a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-
-                    <li class="nav-item">
-                        <a class="nav-link active text-light" aria-current="page" href="/">Home</a>
-                    </li>
-
-                    <li th:if="${name}" class="nav-item">
-                        <a class="nav-link active text-light" aria-current="page" href="/createProduct">Create Product</a>
-                    </li>
-
-                    <li th:unless="${name}" class="nav-item">
-                        <a class="nav-link text-light" href="/login">Log in</a>
-                    </li>
-
-                    <li th:if="${name}" class="nav-item">
-                        <a class="nav-link text-light" style="cursor: default;">Balance Box</a>
-                    </li>
-
-                    <li th:unless="${name}" class="nav-item">
-                        <a class="nav-link text-light" href="/register">Sign up</a>
-                    </li>
-
-                    <li th:if="${name}" class="nav-item">
-                        <a class="nav-link text-light" href="/transaction">Transaction</a>
-                    </li>
-
-                </ul>
-
-                <form th:if="${name}" class="d-flex">
-                    <h5 class="me-4 d-flex align-items-center mb-0" th:text="${name}"></h5>
-                    <a class="btn btn-danger btn-md me-3" href="/logout" role="button"> Log Out </a>
-                </form>
-
-            </div>
-        </div>
-    </nav>
-    <div th:if="${error!=null}" class="alert alert-danger" role="alert" th:text="${error}"></div>
-
-    <div id="main" class="position-relative d-flex align-items-center justify-content-center">
-        <div style="margin: 0px; width:auto">
-            <div class="modal-content border-dark border-3 px-5 py-3 w-100" style="background-color: var(--cadangan);">
-                <div class="modal-header d-block border-dark border-0">
-                    <div>
-                        <h1 class="modal-title">Balance</h1>
-                    </div>
-                    <div>
-                        <h1 class="modal-title" style=" font-size: 50px; overflow-wrap: break-word; max-width: 70vw;" th:text="${balance}"></h1>
-                    </div>
-                </div>
-                <div class="modal-footer justify-content-around border-dark border-0">
-                     <!-- Button trigger modal 1 -->
-                    <button type="button" class="btn fs-4" style="background-color: var(--utama); color: white;" data-bs-toggle="modal" data-bs-target="#exampleModal1">
-                        Top Up
-                    </button>
-                     <!-- Button trigger modal 1 -->
-                     <button type="button" class="btn fs-4" style="z-index: 2; background-color: var(--bg);" data-bs-toggle="modal" data-bs-target="#exampleModal2">
-                        Withdraw
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- pop up model -->
-    <div class="modal fade " id="exampleModal1" tabindex="-1" aria-labelledby="detailDialog" aria-hidden="true">
-        <div class="modal-dialog ">
-            <div class="modal-content">
-                <div class="modal-header">
-                <h5 class="modal-title">Top Up</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                    <form th:action="@{/topup}" th:object="${balanceDto}" method="post">
-                        <div class="modal-body">
-                            <div class="input-group mb-3">
-                                <span class="input-group-text">Rp</span>
-                                <input th:field="*{amount}" type="text" class="form-control" required>
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary">Top Up</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- wd model -->
-    <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-            <h5 class="modal-title">Withdraw</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <form th:action="@{/withdraw}" th:object="${balanceDto}" method="post">
-                <div class="modal-body">
-                    <div class="input-group mb-3">
-                        <span class="input-group-text">Rp</span>
-                        <input th:field="*{amount}" type="text" class="form-control" required>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-primary">Withdraw</button>
-                </div>
-            </form>
-        </div>
-        </div>
-    </div>
-
-    <div id="footer" class="container-fluid justify-content-center position-absolute p-0 m-0" style="top: 100%; transform: translateY(-100%); background-color: var(--utama)">
-        <footer class="py-1 w-100 d-flex justify-content-center">
-            <div class="w-50">
-                <ul class="nav justify-content-center border-bottom pb-3 mb-3 ">
-                  <li class="nav-item"><a href="https://mail.google.com/mail/?view=cm&fs=1&to=evan.aurelrius@ui.ac.id&su=Hii"
-                                          class="nav-link px-2 text-light">evan.aurelrius@ui.ac.id</a></li>
-                  <li class="nav-item"><a href="https://wa.me/6285271321514"
-                                          class="nav-link px-2 text-light">0852-7132-1514</a></li>
-                  <li class="nav-item"><a href="https://www.instagram.com/evanaurelrius/"
-                                          class="nav-link px-2 text-light">@evanaurelrius</a></li>
-                </ul>
-                <p class="text-center text-light">© Mahasiswa Fasilkom Universitas Indonesia 2020, Evan Aurelrius</p>
-            </div>
-        </footer>
-    </div>
-</body>
-<link rel="stylesheet" href="/css/style.css">
-<script>
-    var heightFooter = document.getElementById('footer').clientHeight;
-    var heightHeader = document.getElementById('header').clientHeight;
-    var now = window.innerHeight - (heightFooter+heightHeader);
-    document.getElementById('main').style.height = now+"px";
-    document.getElementById('main').style.maxHeight = now+"px";
-</script>
-<script src="/js/bootstrap.js"></script>
-<style>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" media="screen and (max-width: 400px)" href="/css/balancePhone.css">
+    <style>
         :root{
         --utama:#85586F;
         --cadangan:#DEB6AB;
@@ -166,4 +23,157 @@
             background:var(--utama) !important;
         }
     </style>
+</head>
+<body class="container-fluid p-0 m-0">
+    <div class="row m-0 d-flex justify-content-center h-100">
+        <!-- head -->
+        <div id="header" class="row p-0" style="height:10vh;">
+            <nav class="navbar navbar-expand-xl text-light navbar-dark" style="background-color: var(--utama);">
+                <div class="container-fluid p-0">
+                    <a class="navbar-brand text-light" style="cursor: default;">
+                        <h3 class="m-0" style="padding: 8px">Canteen</h3>
+                    </a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                            <li class="nav-item">
+                                <a class="nav-link active text-light" href="/">Home</a>
+                            </li>
+                            
+                            <li th:if="${name}" class="nav-item">
+                                <a class="nav-link text-light" href="/createProduct">Create Product</a>
+                            </li>
+                            
+                            <li th:unless="${name}" class="nav-item">
+                                <a class="nav-link text-light" href="/login">Log in</a>
+                            </li>
+                            
+                            <li th:if="${name}" class="nav-item">
+                                <a class="nav-link text-light" style="cursor: default;" aria-current="page">Balance Box</a>
+                            </li>
+                            
+                            <li th:unless="${name}" class="nav-item">
+                                <a class="nav-link text-light" style="cursor: default;">Sign up</a>
+                            </li>
+                        </ul>
+                        <form th:if="${name}" class="d-flex">
+                            <h5 class="me-4 d-flex align-items-center mb-0" th:text="${name}"></h5>
+                            <a class="btn btn-danger btn-md me-3" href="/logout" role="button"> Log Out </a>
+                        </form>
+                    </div>
+                </div>
+            </nav>
+            <div th:if="${error!=null}" class="alert alert-danger" role="alert" th:text="${error}"></div>
+        </div>
+        <!-- head -->
+
+        <!-- main -->
+        <div id="main" class="row position-relative align-items-center justify-content-center p-0">
+            <div style="margin: 0px; width:auto">
+                <div class="modal-content border-dark border-3 px-5 py-3 w-100" style="background-color: var(--cadangan);">
+                    <div class="modal-header d-block border-dark border-0">
+                        <div>
+                            <h1 class="modal-title">Balance</h1>
+                        </div>
+                        <div>
+                            <h1 id="balance" class="modal-title" style="overflow-wrap: break-word; max-width: 70vw;" th:text="${balance}"></h1>
+                        </div>
+                    </div>
+                    <div class="modal-footer justify-content-around border-dark border-0">
+                        <!-- Button trigger modal 1 -->
+                        <button type="button" class="btn fs-4" style="background-color: var(--utama); color: white;" data-bs-toggle="modal" data-bs-target="#exampleModal1">
+                            Top Up
+                        </button>
+                        <!-- Button trigger modal 1 -->
+                        <button type="button" class="btn fs-4" style="z-index: 2; background-color: var(--bg);" data-bs-toggle="modal" data-bs-target="#exampleModal2">
+                            Withdraw
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- main -->
+
+        <!-- footer -->
+        <div id="footer" class="row d-flex p-0 m-0" style="align-items:flex-end;">
+            <div class="m-0 p-0" style="background-color: var(--utama)">
+                <div class="d-flex flex-column align-items-center justify-content-center p-0" style="height:15vh;">
+                    <ul class="nav justify-content-center">
+                        <li class="nav-item">
+                            <a href="https://mail.google.com/mail/?view=cm&fs=1&to=evan.aurelrius@ui.ac.id&su=Hii" class="nav-link px-2 text-light">evan.aurelrius@ui.ac.id</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="https://wa.me/6285271321514" class="nav-link px-2 text-light">0852-7132-1514</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="https://www.instagram.com/evanaurelrius/"class="nav-link px-2 text-light">@evanaurelrius</a>
+                        </li>
+                    </ul>
+                    <div class="w-50" style="border-top: 1px solid white"></div>
+                    <p class="text-center text-light m-0" style="padding: 8px;">
+                        © Mahasiswa Fasilkom Universitas Indonesia 2020, Evan Aurelrius
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- pop up model -->
+    <div class="modal fade " id="exampleModal1" tabindex="-1" aria-labelledby="detailDialog" aria-hidden="true">
+        <div class="modal-dialog ">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Top Up</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form th:action="@{/topup}" th:object="${balanceDto}" method="post">
+                    <div class="modal-body">
+                        <div class="input-group mb-3">
+                            <span class="input-group-text">Rp</span>
+                            <input th:field="*{amount}" type="text" class="form-control" required>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Top Up</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- wd model -->
+    <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Withdraw</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form th:action="@{/withdraw}" th:object="${balanceDto}" method="post">
+                    <div class="modal-body">
+                        <div class="input-group mb-3">
+                            <span class="input-group-text">Rp</span>
+                            <input th:field="*{amount}" type="text" class="form-control" required>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Withdraw</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+<!-- <script>
+    var heightFooter = document.getElementById('footer').clientHeight;
+    var heightHeader = document.getElementById('header').clientHeight;
+    var now = window.innerHeight - (heightFooter+heightHeader);
+    document.getElementById('main').style.height = now+"px";
+    document.getElementById('main').style.maxHeight = now+"px";
+</script> -->
+<script src="/js/bootstrap.js"></script>
 </html>

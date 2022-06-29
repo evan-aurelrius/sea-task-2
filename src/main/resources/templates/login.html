@@ -22,6 +22,8 @@
 
 <body class="container-fluid">
     <div class="row h-100 justify-content-center">
+
+        <!-- head -->
         <div id="header" class="row container-fluid p-0" style="height: 10vh;">
             <nav class="navbar navbar-expand-xl text-light navbar-dark" style="background-color: var(--utama);">
                 <div class="container-fluid p-0 align-items-center d-flex">
@@ -60,22 +62,22 @@
                     </div>
                 </div>
             </nav>
+            <div th:if="${error!=null}" class="alert alert-danger" role="alert" th:text="${error}"></div>
         </div>
         
         <!-- main -->
         <div id="main" class="row d-flex flex-column align-items-center justify-content-center my-2 p-0">
             <img class="mb-3 p-0" style="width:250px; aspect-ratio: 1;" src="/images/logo.png" alt="SD SEA Sentosa Logo">
-            <div th:if="${error!=null}" class="alert alert-danger" role="alert" th:text="${error}"></div>
             
             <form th:action="@{/login}" th:object="${accountDto}" method="post" class="w-50">
                 
                 <div class="input-group mb-2">
-                    <span style="white-space: pre-wrap; text-align: start;"
-                    class="input-group-text w-25" id="basic-addon1">Student's ID</span>
+                    <span style="white-space: normal; text-align: start; background-color: var(--utama)"
+                        class="input-group-text w-25 text-light" id="basic-addon1">Student's ID</span>
                     <input th:field="*{sid}" type="text" class="form-control" placeholder=" " aria-describedby="basic-addon1" required>
                 </div>
                 <div class="input-group mb-2">
-                    <span class="input-group-text w-25" id="basic-addon2">Password</span>
+                    <span class="input-group-text w-25 text-light" style="background-color: var(--utama);" id="basic-addon2">Password</span>
                     <input th:field="*{password}" type="password" class="form-control" placeholder=" " aria-describedby="basic-addon1" autocomplete="off" required>
                 </div>
                 <div>

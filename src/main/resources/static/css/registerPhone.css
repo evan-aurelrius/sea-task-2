@@ -1,6 +1,7 @@
 #header{
     font-size: 14px !important;
     height: 5vh !important;
+    z-index: 1;
 }
 
 #header h3{
@@ -20,7 +21,25 @@
 }
 
 #main{
-    margin: 0px !important;
+    flex-direction:column;
+}
+
+#main form{
+    width: 80vw !important;
+    padding: 0px !important;
+    font-size: 12px !important;
+}
+
+#basic-addon1, #basic-addon2,  #basic-addon3,  #basic-addon4{
+    font-size: 12px !important;
+    width: 35% !important;
+    white-space: unset !important; 
+}
+
+#main #garis{
+    visibility:hidden !important;
+    position:absolute !important;
+    z-index:-1 !important;
 }
 
 #main img{
@@ -28,26 +47,11 @@
     margin-bottom: 1vh !important;
 }
 
-#main .input-group{
-    margin: 0.5vh 0px;
-}
-
-#main form{
-    padding: 0px;
-    font-size: 12px !important;
-    width: 80vw !important;
-}
-
-#basic-addon1, #basic-addon2{
-    font-size: 12px !important;
-    width: 30% !important;
-}
-
 #main button {
     font-size: 12px !important;
 }
 
-#continueAsGuest, #login{
+#continueAsGuest, #register{
     width:50% !important;
 }
 

@@ -1,0 +1,40 @@
+#header{
+    font-size: 14px !important;
+    height: 5vh !important;
+    z-index: 1;
+}
+
+#header h3{
+    font-size: 16px !important;
+}
+
+#header .navbar-toggler {
+    height: 20% !important;
+    aspect-ratio: 1;
+    border: 0 !important;
+    padding: 0 !important;
+}
+
+#main .modal-content{
+    padding: 0px 5vw !important;
+}
+
+#main h1{
+    font-size: 16px;
+}
+
+#main #balance{
+    font-size: 14px;
+}
+
+#main button{
+    font-size: 14px !important;
+}
+
+#footer .w-50{
+    width:75% !important;
+}
+
+#footer ul, #footer p{
+    font-size: 12px !important;
+}
