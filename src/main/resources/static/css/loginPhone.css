@@ -1,0 +1,55 @@
+#header{
+    font-size: 14px !important;
+    height: 5vh !important;
+}
+
+#header h3{
+    font-size: 16px !important;
+}
+
+#header .navbar-toggler {
+    height: 20% !important;
+    aspect-ratio: 1;
+    border: 0 !important;
+    padding: 0 !important;
+}
+
+#main{
+    margin: 0px !important;
+}
+
+#main img{
+    width: 50vw !important;
+    margin-bottom: 1vh !important;
+}
+
+#main .input-group{
+    margin: 0.5vh 0px;
+}
+
+#main form{
+    padding: 0px;
+    font-size: 12px !important;
+    width: 80vw !important;
+}
+
+#basic-addon1, #basic-addon2{
+    font-size: 12px !important;
+    width: 30% !important;
+}
+
+#main button {
+    font-size: 12px !important;
+}
+
+#continueAsGuest, #login{
+    width:50% !important;
+}
+
+#footer .w-50{
+    width:75% !important;
+}
+
+#footer ul, #footer p{
+    font-size: 12px !important;
+}

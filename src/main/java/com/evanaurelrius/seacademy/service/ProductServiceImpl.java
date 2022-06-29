@@ -35,7 +35,7 @@ public class ProductServiceImpl implements ProductService{
         SimpleDateFormat ft = new SimpleDateFormat("yyMMddhhmmssMs");
         String datetime = ft.format(new Timestamp(System.currentTimeMillis()));
         StringBuilder fileNames = new StringBuilder();
-        String fileName = name+datetime+image.getOriginalFilename().substring(image.getOriginalFilename().length()-4);
+        String fileName = name.replace(" ","")+datetime+image.getOriginalFilename().substring(image.getOriginalFilename().length()-4);
         Path fileNameAndPath = Paths.get(uploadDir, fileName);
 
         try{

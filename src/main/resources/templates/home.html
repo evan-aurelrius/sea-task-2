@@ -65,39 +65,41 @@
   </ul>
 </div>
 
-<div class="row row-cols-3 row-cols-xl-4 w-100 mx-0 position-relative justify-content-around" id="main">
+<div class="row row-cols-3 m-0 row-cols-xl-4 gap-3 d-flex justify-content-center" id="main">
   <!-- ex 1 -->
-  <div th:each="product: ${products}" class="card mb-3 mx-2 px-0" style="cursor: pointer; word-wrap: normal !important; white-space: nowrap;">
+  <div th:each="product: ${products}" class="p-0 text-light" style=" background-color: var(--utama); cursor: pointer; word-wrap: normal !important; white-space: nowrap;">
     <div class="row g-0">
-      <!-- left -->
-      <div class="col-md-4" style="position: relative;">
+    <!-- left -->
+      <div class="col-md-4 d-flex flex-column" style="position: relative; align-items: center; backdrop-filter: blur(1px);">
         <img th:src="@{'/imagedata/' + ${product.imageSrc}}"
-             style="border:solid 2px black; border-bottom:0px; position: absolute; object-fit:contain; aspect-ratio: 1; z-index:1;"
-             data-bs-toggle="modal" th:attr="data-bs-target='#detailDialog-'+${product.id}" class="h-75 w-100">
-        <div class="h-75 w-100" th:style="'filter: blur(2px) ;background-image: url('+ @{'/imagedata/' + ${product.imageSrc}} +');
-            background-size: cover; background-position: center;'"></div>
-
+          th:style="'object-fit:contain; aspect-ratio: 1; backdrop-filter: blur(10px);'"
+          data-bs-toggle="modal" th:attr="data-bs-target='#detailDialog-'+${product.id}" class="h-75 w-100">
+        <div class="h-75 w-100" th:style="'position:absolute; z-index:-1;background-image: url('+ @{'/imagedata/' + ${product.imageSrc}} +');
+        background-size: cover; background-position: center;'">
+        </div>
+          
         <button th:if="${name}" id="buyProduct" type="button" class="w-100 h-25" data-bs-toggle="modal" th:attr="data-bs-target='#buyDialog-'+${product.id}"
-                style="z-index: 2; background: var(--cadangan);">
+          style="z-index: 2; background: var(--cadangan);">
           Buy Product
         </button>
         <form th:unless="${name}" action="/login" class="w-100 h-25">
           <button type="submit" class="w-100 h-100" id="buyProductDisabled"
-                  style="z-index: 2; background: var(--cadangan);">
+            style="z-index: 2; background: var(--cadangan);">
             Buy Product
           </button>
         </form>
       </div>
-      <!-- right -->
-      <div class="col-md-8" data-bs-toggle="modal" th:attr="data-bs-target='#detailDialog-'+${product.id}" style="word-break:normal !important";>
-        <div class="card-body">
-          <p style="overflow: hidden; text-overflow: ellipsis;" class="card-title fs-4 mb-0" th:text="${product.name}"></p>
-          <b><p style="overflow: hidden; text-overflow: ellipsis;" class="card-text fs-4" th:text="${product.price}"></p></b>
-          <p class="card-text"><small class="text-muted" th:utext="${'Product created at: <br>' + product.timestamp}"></small></p>
-        </div>
+          <!-- right -->
+          <div class="col-md-7" data-bs-toggle="modal" th:attr="data-bs-target='#detailDialog-'+${product.id}" style="word-break:normal !important";>
+              <div class="card-body">
+                  <p style="overflow: hidden; text-overflow: ellipsis;" class="card-title fs-4 mb-0" th:text="${product.name}"></p>
+                  <b><p style="overflow: hidden; text-overflow: ellipsis;" class="card-text fs-4" th:text="${product.price}"></p></b>
+                  <p class="card-text"><small th:utext="${'Purchased time: <br>' + product.timestamp}"></small></p>
+              </div>
+          </div>
       </div>
-    </div>
   </div>
+</div>
 
   <!-- pop up buy -->
   <div th:each="product: ${products}" class="modal fade" th:id="${'buyDialog-' + product.id}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -190,17 +192,18 @@
       var heightFooter = document.getElementById('footer').clientHeight;
       document.getElementById('footer').style.top = window.innerHeight - heightFooter +'px';
       document.getElementById('footer').style.position = 'absolute';
+      document.getElementById('footer').style.marginTop = '0px';
     }
     else{
       console.log('untuk screen panjang')
-      document.getElementById('footer').style.top = 0+'px';
+      document.getElementById('footer').style.top = '0px';
       document.getElementById('footer').style.position = 'relative';
+      document.getElementById('footer').style.marginTop = '2vh';
     }
   }
 </script>
 <style>
   :root{
-    --gambar:url("https://imgs.search.brave.com/w3uU47vMjhdPKQNNHsQX9RkTLm4CBX5LvVYWTnOYq8A/rs:fit:711:225:1/g:ce/aHR0cHM6Ly90c2Uy/Lm1tLmJpbmcubmV0/L3RoP2lkPU9JUC4z/ZkZVdWNEWXU2NGo4/VkY2eVlsZGp3SGFF/OCZwaWQ9QXBp");
     --utama:#85586F;
     --cadangan:#DEB6AB;
     --bg:#F8ECD1;
@@ -210,19 +213,8 @@
     background: var(--bg);
   }
 
-  img{
-    background-repeat: no-repeat !important;
-    background-size: cover !important;
-    background-position: center !important;
-  }
-
-  #buyProduct:focus + #scrollable #buyProductDisabled:focus + #scrollable{
-      border: 0px solid ;
-      display: flex;
-  }
-
-  #buyProduct:hover #buyProductDisabled:hover{
-      font-size: 20px;
+  #buyProduct:hover, #buyProductDisabled:hover{
+      font-weight: bold;
   }
 </style>
 </html>
