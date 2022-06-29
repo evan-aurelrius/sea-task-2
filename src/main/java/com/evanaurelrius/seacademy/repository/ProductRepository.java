@@ -23,6 +23,15 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
     @Query(value = "SELECT p FROM Product p WHERE p.forsale='1' ORDER BY p.timestamp desc")
     Iterable<Product> findAllByOrderByTimestampDesc();
 
+    @Query(value = "SELECT p FROM Product p WHERE p.forsale='0' AND ownerid=?1 ORDER BY p.name asc")
+    Iterable<Product> findAllMyProductByOrderByNameAsc(long ownerid);
+
+    @Query(value = "SELECT p FROM Product p WHERE p.forsale='0' AND ownerid=?1 ORDER BY p.name desc")
+    Iterable<Product> findAllMyProductByOrderByNameDesc(long ownerid);
+
+    @Query(value = "SELECT p FROM Product p WHERE p.forsale='0' AND ownerid=?1 ORDER BY p.timestamp asc")
+    Iterable<Product> findAllMyProductByOrderByTimestampAsc(long ownerid);
+
     @Query(value = "SELECT p FROM Product p WHERE p.forsale='0' AND ownerid=?1 ORDER BY p.timestamp desc")
     Iterable<Product> findAllMyProductByOrderByTimestampDesc(long ownerid);
 

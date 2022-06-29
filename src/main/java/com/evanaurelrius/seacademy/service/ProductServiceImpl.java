@@ -113,6 +113,15 @@ public class ProductServiceImpl implements ProductService{
     public List<Product> getAllProductsByTimestampDesc() { return (List<Product>) productRepository.findAllByOrderByTimestampDesc(); }
 
     @Override
-    public List<Product> getAllPurchasedProduct(long ownerId) { return (List<Product>) productRepository.findAllMyProductByOrderByTimestampDesc(ownerId); }
+    public List<Product> getAllPurchasedProductByNameAsc(long ownerId) { return (List<Product>) productRepository.findAllMyProductByOrderByNameAsc(ownerId); }
+
+    @Override
+    public List<Product> getAllPurchasedProductByNameDesc(long ownerId) { return (List<Product>) productRepository.findAllMyProductByOrderByNameDesc(ownerId); }
+
+    @Override
+    public List<Product> getAllPurchasedProductByTimeAsc(long ownerId) { return (List<Product>) productRepository.findAllMyProductByOrderByTimestampAsc(ownerId); }
+
+    @Override
+    public List<Product> getAllPurchasedProductByTimeDesc(long ownerId) { return (List<Product>) productRepository.findAllMyProductByOrderByTimestampDesc(ownerId); }
 
 }

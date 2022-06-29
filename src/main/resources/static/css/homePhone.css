@@ -1,7 +1,11 @@
 #header{
     font-size: 14px !important;
-    height: 5vh !important;
+    height: calc(5vh + 16px) !important;
     z-index: 1;
+}
+
+.nav-link {
+    padding: 0.3rem 1rem !important;
 }
 
 #header h3{
@@ -28,6 +32,8 @@
 
 #dropdownMenuLink{
     margin-right: 2vw !important;
+    width: 35% !important;
+    font-size: 10px !important;
 }
 
 #sorting .pe-5, #sorting .dropdown-item{
@@ -71,7 +77,7 @@
 }
 
 #footer ul, #footer p{
-    font-size: 12px !important;
+    font-size: 10px !important;
 }
 
 .modal-content{
@@ -84,3 +90,4 @@
     align-items: center !important;
     justify-content: center !important;
 }
+

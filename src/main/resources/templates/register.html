@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,17 +9,19 @@
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" media="screen and (max-width: 400px)" href="/css/registerPhone.css">
     <style>
-        :root{
-            --utama:#85586F;
-            --cadangan:#DEB6AB;
-            --bg:#F8ECD1;
+        :root {
+            --utama: #85586F;
+            --cadangan: #DEB6AB;
+            --bg: #F8ECD1;
         }
-        body{
+
+        body {
             background: var(--bg);
             height: 100vh;
         }
     </style>
 </head>
+
 <body class="container-fluid">
     <div class="row justify-content-center h-100">
 
@@ -29,7 +32,9 @@
                     <a class="navbar-brand text-light" style="cursor: default;">
                         <h3 class="m-0" style="padding: 8px">Canteen</h3>
                     </a>
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -37,21 +42,22 @@
                             <li class="nav-item">
                                 <a class="nav-link active text-light" aria-current="page" href="/">Home</a>
                             </li>
-                            
+
                             <li th:if="${name}" class="nav-item">
                                 <a class="nav-link text-light" href="/createProduct">Create Product</a>
                             </li>
-                            
+
                             <li th:unless="${name}" class="nav-item">
                                 <a class="nav-link text-light" href="/login">Log in</a>
                             </li>
-                            
+
                             <li th:if="${name}" class="nav-item">
                                 <a class="nav-link text-light" href="/balanceBox">Balance Box</a>
                             </li>
-                            
-                            <li th:unless="${name}" class="nav-item">
-                                <a class="nav-link text-light" style="cursor: default;">Sign up</a>
+
+                            <li th:unless="${name}" class="nav-item"
+                                style="background-color: var(--cadangan); border-radius: 5px">
+                                <a class="nav-link text-dark" style="cursor: default;">Sign up</a>
                             </li>
                         </ul>
                         <form th:if="${name}" class="d-flex">
@@ -66,32 +72,38 @@
         <!-- head -->
 
         <!-- main -->
-        <div id="main" style="width:100%" class="row row-cols-1 row-cols-xl-3 p-0 m-0 d-flex align-items-center justify-content-around">
+        <div id="main" style="width:100%"
+            class="row row-cols-1 row-cols-xl-3 p-0 m-0 d-flex align-items-center justify-content-around">
             <img class="col p-0" style="width:250px; aspect-ratio: 1;" src="/images/logo.png" alt="SD SEA Sentosa Logo">
             <div id="garis" class="col p-0" style="height:50vh; width:1px; background-color: black;"></div>
-            
+
             <form class="col w-50" th:action="@{/register}" th:object="${accountDto}" method="post">
                 <div class="input-group mb-2">
                     <span style="white-space: normal; text-align: start; background-color: var(--utama);"
                         class="input-group-text w-25 text-light" id="basic-addon1">Student's ID
                     </span>
-                    <input th:field="*{sid}" type="text" class="form-control" placeholder=" " aria-describedby="basic-addon1" required maxlength="5">
+                    <input th:field="*{sid}" type="text" class="form-control" placeholder=" "
+                        aria-describedby="basic-addon1" required maxlength="5">
                 </div>
                 <div class="input-group mb-2">
                     <span style="white-space: normal; text-align: start; background-color: var(--utama)"
-                    class="input-group-text w-25 text-light" id="basic-addon2">First name
+                        class="input-group-text w-25 text-light" id="basic-addon2">First name
                     </span>
-                    <input th:field="*{first_name}" type="text" class="form-control" placeholder=" " aria-describedby="basic-addon2" required maxlength="127">
+                    <input th:field="*{first_name}" type="text" class="form-control" placeholder=" "
+                        aria-describedby="basic-addon2" required maxlength="127">
                 </div>
                 <div class="input-group mb-2">
-                    <span style="white-space: normal; text-align: start; background-color: var(--utama)";
-                    class="input-group-text w-25 text-light" id="basic-addon3">Last name
+                    <span style="white-space: normal; text-align: start; background-color: var(--utama)" ;
+                        class="input-group-text w-25 text-light" id="basic-addon3">Last name
                     </span>
-                    <input th:field="*{last_name}" type="text" class="form-control" placeholder=" " aria-describedby="basic-addon3" maxlength="127">
+                    <input th:field="*{last_name}" type="text" class="form-control" placeholder=" "
+                        aria-describedby="basic-addon3" maxlength="127">
                 </div>
                 <div class="input-group mb-2">
-                    <span class="input-group-text w-25 text-light" style="background-color: var(--utama);" id="basic-addon4">Password</span>
-                    <input th:field="*{password}" type="text" class="form-control" placeholder=" " aria-describedby="basic-addon4" required maxlength="127">
+                    <span class="input-group-text w-25 text-light" style="background-color: var(--utama);"
+                        id="basic-addon4">Password</span>
+                    <input th:field="*{password}" type="text" class="form-control" placeholder=" "
+                        aria-describedby="basic-addon4" required maxlength="127">
                 </div>
                 <div>
                     Already have an account?
@@ -99,10 +111,11 @@
                         <b>Login</b>
                     </a>
                 </div>
-            
+
                 <span class="d-flex flex-column ">
                     <div class="d-flex my-3 w-100 justify-content-center">
-                        <button id="register" style="width:40%; background-color: var(--utama);" type="submit" class="btn border-0 text-light">
+                        <button id="register" style="width:40%; background-color: var(--utama);" type="submit"
+                            class="btn border-0 text-light">
                             Register
                         </button>
                     </div>
@@ -121,16 +134,18 @@
         <!-- footer -->
         <div id="footer" class="row d-flex p-0 m-0" style="align-items:flex-end;">
             <div class="m-0 p-0" style="background-color: var(--utama)">
-                <div class="d-flex flex-column align-items-center justify-content-center p-0" style="height:15vh;">
+                <div class="d-flex flex-column align-items-center justify-content-center p-0" style="height:10vh;">
                     <ul class="nav justify-content-center">
                         <li class="nav-item">
-                            <a href="https://mail.google.com/mail/?view=cm&fs=1&to=evan.aurelrius@ui.ac.id&su=Hii" class="nav-link px-2 text-light">evan.aurelrius@ui.ac.id</a>
+                            <a href="https://mail.google.com/mail/?view=cm&fs=1&to=evan.aurelrius@ui.ac.id&su=Hii"
+                                class="nav-link px-2 text-light">evan.aurelrius@ui.ac.id</a>
                         </li>
                         <li class="nav-item">
                             <a href="https://wa.me/6285271321514" class="nav-link px-2 text-light">0852-7132-1514</a>
                         </li>
                         <li class="nav-item">
-                            <a href="https://www.instagram.com/evanaurelrius/"class="nav-link px-2 text-light">@evanaurelrius</a>
+                            <a href="https://www.instagram.com/evanaurelrius/"
+                                class="nav-link px-2 text-light">@evanaurelrius</a>
                         </li>
                     </ul>
                     <div class="w-50" style="border-top: 1px solid white"></div>
@@ -143,4 +158,5 @@
     </div>
 </body>
 <script src="/js/bootstrap.js"></script>
+
 </html>

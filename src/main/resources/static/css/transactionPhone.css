@@ -1,0 +1,93 @@
+#header{
+    font-size: 14px !important;
+    height: calc(5vh + 16px) !important;
+    z-index: 1;
+}
+
+.nav-link {
+    padding: 0.3rem 1rem !important;
+}
+
+#header h3{
+    font-size: 16px !important;
+}
+
+#header .navbar-toggler {
+    height: 20% !important;
+    aspect-ratio: 1;
+    border: 0 !important;
+    padding: 0 !important;
+}
+
+#sorting{
+    margin-top: calc(2vh + 8px) !important;
+    padding: 0 !important;
+    width: 100% !important;
+}
+
+#sort{
+    padding: 0 !important;
+    width: 100% !important;
+}
+
+#dropdownMenuLink{
+    margin-right: 2vw !important;
+    width: 35% !important;
+    font-size: 10px !important;
+}
+
+#sorting .pe-5, #sorting .dropdown-item{
+    font-size: 14px !important;
+}
+
+.alert{
+    margin: 0px !important;
+}
+
+#main{
+    padding: 0 !important;
+}
+
+#main .kartu{
+    width: 45% !important;
+}
+
+#main #buyProduct{
+    font-size: 14px !important;
+}
+
+#main .card-body{
+    padding: 2vw !important;
+}
+
+#main .card-title{
+    font-size: 16px !important;
+}
+
+#main .card-text{
+    font-size: 14px !important;
+}
+
+#main small{
+    font-size: 12px !important
+}
+
+#footer .w-50{
+    width:75% !important;
+}
+
+#footer ul, #footer p{
+    font-size: 10px !important;
+}
+
+.modal-content{
+    width: 80% !important;
+    height: 70% !important;
+}
+
+.modal-dialog{
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+

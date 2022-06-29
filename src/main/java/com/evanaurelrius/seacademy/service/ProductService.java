@@ -20,7 +20,13 @@ public interface ProductService {
 
     List<Product> getAllProductsByTimestampDesc();
 
-    List<Product> getAllPurchasedProduct(long ownerId);
+    List<Product> getAllPurchasedProductByNameAsc(long ownerId);
+
+    List<Product> getAllPurchasedProductByNameDesc(long ownerId);
+
+    List<Product> getAllPurchasedProductByTimeAsc(long ownerId);
+
+    List<Product> getAllPurchasedProductByTimeDesc(long ownerId);
 
     Product buyProduct(String productId, long ownerId);
 
