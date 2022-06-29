@@ -24,6 +24,7 @@
     #buyProductDisabled:hover {
       font-weight: bold;
     }
+
   </style>
 </head>
 
@@ -33,50 +34,56 @@
     <div class="row p-0" id="wholeHeader" style="height: fit-content">
       <div id="header" class="row p-0 m-0" style="height:10vh;">
         <!-- <div class="p-0"> -->
-          <nav class="navbar navbar-expand-xl text-light navbar-dark" style="background-color: var(--utama);">
-            <div class="container-fluid p-0">
-              <a class="navbar-brand text-light" style="cursor: default;">
-                <h3 class="m-0" style="padding: 8px">Canteen</h3>
-              </a>
-              <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-                aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-              </button>
-              <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                  <li class="nav-item" style="background-color: var(--cadangan); border-radius: 5px">
-                    <a class="nav-link text-dark" style="cursor: default;" aria-current="page">Home</a>
-                  </li>
-
-                  <li th:if="${name}" class="nav-item">
-                    <a class="nav-link text-light" href="/createProduct">Create Product</a>
-                  </li>
-
-                  <li th:unless="${name}" class="nav-item">
-                    <a class="nav-link text-light" href="/login">Log in</a>
-                  </li>
-
-                  <li th:if="${name}" class="nav-item">
-                    <a class="nav-link active text-light" href="/balanceBox">Balance Box</a>
-                  </li>
-
-                  <li th:unless="${name}" class="nav-item">
-                    <a class="nav-link text-light" style="cursor: default;">Sign up</a>
-                  </li>
-
-                  <li th:if="${name}" class="nav-item">
-                    <a class="nav-link text-light" href="/transaction">Transaction</a>
+        <nav class="navbar navbar-expand-xl text-light navbar-dark" style="background-color: var(--utama);">
+          <div class="container-fluid p-0">
+            <a class="navbar-brand text-light" style="cursor: default;">
+              <h3 class="m-0" style="padding: 8px">Canteen</h3>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+              data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+              aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item" style="background-color: var(--cadangan); border-radius: 5px">
+                  <a class="nav-link text-dark" style="cursor: default;" aria-current="page">Home</a>
                 </li>
 
-                </ul>
-                <form th:if="${name}" class="d-flex">
-                  <h5 class="me-4 d-flex align-items-center mb-0" th:text="${name}"></h5>
-                  <a class="btn btn-danger btn-md me-3" href="/logout" role="button"> Log Out </a>
-                </form>
+                <li th:if="${name}" class="nav-item">
+                  <a class="nav-link text-light" href="/createProduct">Create Product</a>
+                </li>
+
+                <li th:unless="${name}" class="nav-item">
+                  <a class="nav-link text-light" href="/login">Log in</a>
+                </li>
+
+                <li th:if="${name}" class="nav-item">
+                  <a class="nav-link active text-light" href="/balanceBox">Balance Box</a>
+                </li>
+
+                <li th:unless="${name}" class="nav-item">
+                  <a class="nav-link text-light" style="cursor: default;">Sign up</a>
+                </li>
+
+                <li th:if="${name}" class="nav-item">
+                  <a class="nav-link text-light" href="/transaction">Transaction</a>
+                </li>
+
+              </ul>
+              <div style="border-right: 2px solid white; height: 100%" class="me-2" id="pointer">
+                <a class="typewrite navbar-brand text-light" data-period="1000" style="width: 8rem; text-align: right;"
+                  data-type='["hi","ହ i","hai","хаи","하이","海","ハイ","привет","ਹੈ","هاي","ហៃ","ไห่"]'>
+                  <span class="wrap m-0" style="padding: 8px;"></span>
+                </a>
               </div>
+              <form th:if="${name}" class="d-flex">
+                <h5 class="me-4 d-flex align-items-center mb-0" th:text="${name}"></h5>
+                <a class="btn btn-danger btn-md me-3" href="/logout" role="button"> Log Out </a>
+              </form>
             </div>
-          </nav>
+          </div>
+        </nav>
         <!-- </div> -->
       </div>
       <div th:if="${success!=null}" class="alert alert-success" role="alert" th:text="${success}"></div>
@@ -84,11 +91,11 @@
       <div id="sorting" class="row">
         <div id="sort" class="dropdown d-flex justify-content-end">
           <a class="btn dropdown-toggle" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown"
-          aria-expanded="false" style="background: var(--cadangan); margin-top: 2vh">
-          <span class="pe-2" th:text="${'Sort by: ' + sortingMechanism}"></span>
-        </a>
-        
-        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuLink">
+            aria-expanded="false" style="background: var(--cadangan); margin-top: 2vh">
+            <span class="pe-2" th:text="${'Sort by: ' + sortingMechanism}"></span>
+          </a>
+
+          <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuLink">
             <li><a class="dropdown-item" href="/sort/nameAsc">A to Z</a></li>
             <li><a class="dropdown-item" href="/sort/nameDesc">Z to A</a></li>
             <li><a class="dropdown-item" href="/sort/timeDesc">Latest first</a></li>
@@ -104,7 +111,8 @@
     <div id="main" class="row row-cols-3 m-0 row-cols-xl-4 gap-3 d-flex justify-content-center align-items-center">
       <!-- ex 1 -->
       <div th:each="product: ${products}" class="kartu p-0 text-light">
-        <div class="row g-0" style=" background-color: var(--utama); cursor: pointer; word-wrap: normal !important; white-space: nowrap;">
+        <div class="row g-0"
+          style=" background-color: var(--utama); cursor: pointer; word-wrap: normal !important; white-space: nowrap;">
           <!-- left -->
           <div class="col-md-4 d-flex flex-column"
             style="position: relative; align-items: center; backdrop-filter: blur(1px);">
@@ -169,7 +177,8 @@
   </div>
 
   <!-- pop up buy -->
-  <div th:each="product: ${products}" class="modal fade" th:id="${'buyDialog-' + product.id}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div th:each="product: ${products}" class="modal fade" th:id="${'buyDialog-' + product.id}" tabindex="-1"
+    aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
@@ -190,7 +199,8 @@
   </div>
 
   <!-- popup detail -->
-  <div th:each="product: ${products}" class="modal fade m-0" th:id="${'detailDialog-' + product.id}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div th:each="product: ${products}" class="modal fade m-0" th:id="${'detailDialog-' + product.id}" tabindex="-1"
+    aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered">
       <div class="modal-content" style="background-color: var(--utama)">
         <!-- header -->
@@ -217,11 +227,13 @@
         </div>
         <!-- foot -->
         <div class="modal-footer d-flex align-item-center justify-content-center">
-          <button th:if="${name}" style="background-color: var(--cadangan);" type="button" class="btn w-50 text-center" data-bs-dismiss="modal"
-            th:attr="data-bs-target='#buyDialog-'+${product.id}" data-bs-toggle="modal">Buy Product</button>
+          <button th:if="${name}" style="background-color: var(--cadangan);" type="button" class="btn w-50 text-center"
+            data-bs-dismiss="modal" th:attr="data-bs-target='#buyDialog-'+${product.id}" data-bs-toggle="modal">Buy
+            Product</button>
           <form action="/login" class="w-50">
-            <button th:unless="${name}" style="background-color: var(--cadangan);" type="submit" class="btn w-100 text-center" data-bs-dismiss="modal"
-              th:attr="data-bs-target='#buyDialog-'+${product.id}" data-bs-toggle="modal">Buy Product</button>
+            <button th:unless="${name}" style="background-color: var(--cadangan);" type="submit"
+              class="btn w-100 text-center" data-bs-dismiss="modal" th:attr="data-bs-target='#buyDialog-'+${product.id}"
+              data-bs-toggle="modal">Buy Product</button>
           </form>
         </div>
       </div>
@@ -230,4 +242,6 @@
 
 </body>
 <script src="/js/bootstrap.js"></script>
+<script src="/js/script.js"></script>
+
 </html>

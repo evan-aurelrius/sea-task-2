@@ -66,6 +66,12 @@
                             </li>
 
                         </ul>
+                        <div style="border-right: 2px solid white; height: 100%" class="me-2" id="pointer">
+                          <a class="typewrite navbar-brand text-light" data-period="1000" style="width: 8rem; text-align: right;"
+                            data-type='["hi","ହ i","hai","хаи","하이","海","ハイ","привет","ਹੈ","هاي","ហៃ","ไห่"]'>
+                            <span class="wrap m-0" style="padding: 8px;"></span>
+                          </a>
+                        </div>   
                         <form th:if="${name}" class="d-flex">
                             <h5 class="me-4 d-flex align-items-center mb-0" th:text="${name}"></h5>
                             <a class="btn btn-danger btn-md me-3" href="/logout" role="button"> Log Out </a>
@@ -141,5 +147,6 @@
     </div>
 </body>
 <script src="/js/bootstrap.js"></script>
+<script src="/js/script.js"></script>
 
 </html>

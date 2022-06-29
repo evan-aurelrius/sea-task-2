@@ -60,6 +60,12 @@
                                 <a class="nav-link text-dark" style="cursor: default;">Sign up</a>
                             </li>
                         </ul>
+                        <div style="border-right: 2px solid white; height: 100%" class="me-2" id="pointer">
+                          <a class="typewrite navbar-brand text-light" data-period="1000" style="width: 8rem; text-align: right;"
+                            data-type='["hi","ହ i","hai","хаи","하이","海","ハイ","привет","ਹੈ","هاي","ហៃ","ไห่"]'>
+                            <span class="wrap m-0" style="padding: 8px;"></span>
+                          </a>
+                        </div>   
                         <form th:if="${name}" class="d-flex">
                             <h5 class="me-4 d-flex align-items-center mb-0" th:text="${name}"></h5>
                             <a class="btn btn-danger btn-md me-3" href="/logout" role="button"> Log Out </a>
@@ -74,7 +80,7 @@
         <!-- main -->
         <div id="main" style="width:100%"
             class="row row-cols-1 row-cols-xl-3 p-0 m-0 d-flex align-items-center justify-content-around">
-            <img class="col p-0" style="width:250px; aspect-ratio: 1;" src="/images/logo.png" alt="SD SEA Sentosa Logo">
+            <img class="col p-0" style="width:250px; aspect-ratio: 1; z-index: 0;" src="/images/logo.png" alt="SD SEA Sentosa Logo" id="koin">
             <div id="garis" class="col p-0" style="height:50vh; width:1px; background-color: black;"></div>
 
             <form class="col w-50" th:action="@{/register}" th:object="${accountDto}" method="post">
@@ -158,5 +164,6 @@
     </div>
 </body>
 <script src="/js/bootstrap.js"></script>
+<script src="/js/script.js"></script>
 
 </html>

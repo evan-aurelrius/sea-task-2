@@ -47,7 +47,8 @@
                                 <a class="nav-link text-light" href="/createProduct">Create Product</a>
                             </li>
 
-                            <li th:unless="${name}" class="nav-item" style="background-color: var(--cadangan); border-radius: 5px">
+                            <li th:unless="${name}" class="nav-item"
+                                style="background-color: var(--cadangan); border-radius: 5px">
                                 <a class="nav-link text-dark" style="cursor: default;">Log in</a>
                             </li>
 
@@ -59,6 +60,13 @@
                                 <a class="nav-link text-light" href="/register">Sign up</a>
                             </li>
                         </ul>
+                        <div style="border-right: 2px solid white; height: 100%; text-align: right;"
+                            class="me-2 nav-link" id="pointer">
+                            <a class="typewrite navbar-brand text-light" data-period="1000" style="width: 8rem;"
+                                data-type='["hi","ହ i","hai","хаи","하이","海","ハイ","привет","ਹੈ","هاي","ហៃ","ไห่"]'>
+                                <span class="wrap m-0" style="padding: 8px;"></span>
+                            </a>
+                        </div>
                         <form th:if="${name}" class="d-flex">
                             <h5 class="me-4 d-flex align-items-center mb-0" th:text="${name}"></h5>
                             <a class="btn btn-danger btn-md me-3" href="/logout" role="button"> Log Out </a>
@@ -71,8 +79,8 @@
 
         <!-- main -->
         <div id="main" class="row d-flex flex-column align-items-center justify-content-center my-2 p-0">
-            <img class="mb-3 p-0" style="width:250px; aspect-ratio: 1;" src="/images/logo.png"
-                alt="SD SEA Sentosa Logo">
+            <img class="mb-3 p-0" style="width:250px; aspect-ratio: 1; z-index: -1;" src="/images/logo.png"
+                alt="SD SEA Sentosa Logo" id="koin">
 
             <form th:action="@{/login}" th:object="${accountDto}" method="post" class="w-50">
 
@@ -135,5 +143,6 @@
     </div>
 </body>
 <script src="/js/bootstrap.js"></script>
+<script src="/js/script.js"></script>
 
 </html>
