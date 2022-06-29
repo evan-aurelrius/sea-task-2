@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,12 +9,13 @@
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" media="screen and (max-width: 400px)" href="/css/loginPhone.css">
     <style>
-        :root{
-            --utama:#85586F;
-            --cadangan:#DEB6AB;
-            --bg:#F8ECD1;
+        :root {
+            --utama: #85586F;
+            --cadangan: #DEB6AB;
+            --bg: #F8ECD1;
         }
-        body{
+
+        body {
             background: var(--bg);
             height: 100vh;
         }
@@ -30,7 +32,9 @@
                     <a class="navbar-brand text-light" style="cursor: default;">
                         <h3 class="m-0" style="padding: 8px">Canteen</h3>
                     </a>
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -38,22 +42,22 @@
                             <li class="nav-item">
                                 <a class="nav-link active text-light" aria-current="page" href="/">Home</a>
                             </li>
-                            
+
                             <li th:if="${name}" class="nav-item">
                                 <a class="nav-link text-light" href="/createProduct">Create Product</a>
                             </li>
-                            
+
                             <li th:unless="${name}" class="nav-item">
                                 <a class="nav-link text-light" style="cursor: default;">Log in</a>
                             </li>
-                            
+
                             <li th:if="${name}" class="nav-item">
                                 <a class="nav-link text-light" href="/balanceBox">Balance Box</a>
                             </li>
-                            
+
                             <li th:unless="${name}" class="nav-item">
-                            <a class="nav-link text-light" href="/register">Sign up</a>
-                            </li>    
+                                <a class="nav-link text-light" href="/register">Sign up</a>
+                            </li>
                         </ul>
                         <form th:if="${name}" class="d-flex">
                             <h5 class="me-4 d-flex align-items-center mb-0" th:text="${name}"></h5>
@@ -64,53 +68,61 @@
             </nav>
             <div th:if="${error!=null}" class="alert alert-danger" role="alert" th:text="${error}"></div>
         </div>
-        
+
         <!-- main -->
         <div id="main" class="row d-flex flex-column align-items-center justify-content-center my-2 p-0">
-            <img class="mb-3 p-0" style="width:250px; aspect-ratio: 1;" src="/images/logo.png" alt="SD SEA Sentosa Logo">
-            
+            <img class="mb-3 p-0" style="width:250px; aspect-ratio: 1;" src="/images/logo.png"
+                alt="SD SEA Sentosa Logo">
+
             <form th:action="@{/login}" th:object="${accountDto}" method="post" class="w-50">
-                
+
                 <div class="input-group mb-2">
                     <span style="white-space: normal; text-align: start; background-color: var(--utama)"
                         class="input-group-text w-25 text-light" id="basic-addon1">Student's ID</span>
-                    <input th:field="*{sid}" type="text" class="form-control" placeholder=" " aria-describedby="basic-addon1" required>
+                    <input th:field="*{sid}" type="text" class="form-control" placeholder=" "
+                        aria-describedby="basic-addon1" required>
                 </div>
                 <div class="input-group mb-2">
-                    <span class="input-group-text w-25 text-light" style="background-color: var(--utama);" id="basic-addon2">Password</span>
-                    <input th:field="*{password}" type="password" class="form-control" placeholder=" " aria-describedby="basic-addon1" autocomplete="off" required>
+                    <span class="input-group-text w-25 text-light" style="background-color: var(--utama);"
+                        id="basic-addon2">Password</span>
+                    <input th:field="*{password}" type="password" class="form-control" placeholder=" "
+                        aria-describedby="basic-addon1" autocomplete="off" required>
                 </div>
                 <div>
-                    Don't have an account? <a style="text-decoration: none; color:var(--utama)" href="/register"><b>Sign up</b></a>
+                    Don't have an account? <a style="text-decoration: none; color:var(--utama)" href="/register"><b>Sign
+                            up</b></a>
                 </div>
-                
+
                 <span class="d-flex flex-column ">
                     <div class="d-flex my-3 w-100 justify-content-center">
-                        <button id="login" style="width:30%; background-color: var(--utama);"
-                        type="submit" class="btn border-0 text-light">Login</button>
+                        <button id="login" style="width:30%; background-color: var(--utama);" type="submit"
+                            class="btn border-0 text-light">Login</button>
                     </div>
                     <div id="test2" class="d-flex w-100 justify-content-center">
                         <a id="continueAsGuest" href="/" style="width:30%;">
-                            <button type="button" style="width:100%; background-color: var(--cadangan);" class="btn border-0">Continue As Guest</button>
+                            <button type="button" style="width:100%; background-color: var(--cadangan);"
+                                class="btn border-0">Continue As Guest</button>
                         </a>
                     </div>
                 </span>
             </form>
         </div>
         <!-- main -->
-    
+
         <div id="footer" class="row d-flex p-0 m-0" style="align-items:flex-end;">
             <div class="m-0 p-0" style="background-color: var(--utama)">
                 <div class="d-flex flex-column align-items-center justify-content-center p-0" style="height:15vh;">
                     <ul class="nav justify-content-center">
                         <li class="nav-item">
-                            <a href="https://mail.google.com/mail/?view=cm&fs=1&to=evan.aurelrius@ui.ac.id&su=Hii" class="nav-link px-2 text-light">evan.aurelrius@ui.ac.id</a>
+                            <a href="https://mail.google.com/mail/?view=cm&fs=1&to=evan.aurelrius@ui.ac.id&su=Hii"
+                                class="nav-link px-2 text-light">evan.aurelrius@ui.ac.id</a>
                         </li>
                         <li class="nav-item">
                             <a href="https://wa.me/6285271321514" class="nav-link px-2 text-light">0852-7132-1514</a>
                         </li>
                         <li class="nav-item">
-                            <a href="https://www.instagram.com/evanaurelrius/"class="nav-link px-2 text-light">@evanaurelrius</a>
+                            <a href="https://www.instagram.com/evanaurelrius/"
+                                class="nav-link px-2 text-light">@evanaurelrius</a>
                         </li>
                     </ul>
                     <div class="w-50" style="border-top: 1px solid white"></div>
@@ -120,7 +132,8 @@
                 </div>
             </div>
         </div>
-    </div>           
+    </div>
 </body>
 <script src="/js/bootstrap.js"></script>
+
 </html>

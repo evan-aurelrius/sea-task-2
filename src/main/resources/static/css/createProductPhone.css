@@ -1,0 +1,66 @@
+#header{
+    font-size: 14px !important;
+    height: 5vh !important;
+    z-index: 1;
+}
+
+#header h3{
+    font-size: 16px !important;
+}
+
+#header .navbar-toggler {
+    height: 20% !important;
+    aspect-ratio: 1;
+    border: 0 !important;
+    padding: 0 !important;
+}
+
+#main {
+    font-size: 12px !important;
+}
+
+#main .w-50 {
+    width: 80% !important;
+}
+
+#main .input-group{
+    margin: 0.5vh 0px;
+}
+
+#main input, #main textarea{
+   font-size: 12px !important;
+}
+
+#main {
+    width: 80vw !important;
+}
+
+#main form{
+    padding: 0px;
+    font-size: 12px !important;
+}
+
+.form-label {
+    font-size: 10px !important
+}
+
+#basic-addon1, #basic-addon2, #basic-addon3{
+    font-size: 12px !important;
+    width: 30% !important;
+}
+
+#main button {
+    font-size: 12px !important;
+}
+
+body {
+    background-color: red;
+}
+
+#footer .w-50{
+    width:75% !important;
+}
+
+#footer ul, #footer p{
+    font-size: 12px !important;
+}
