@@ -2,8 +2,6 @@ package com.evanaurelrius.seacademy.service;
 
 import com.evanaurelrius.seacademy.model.Balance;
 
-import java.math.BigInteger;
-
 public interface BalanceService {
 
     Balance getBalance();

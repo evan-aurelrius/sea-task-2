@@ -19,15 +19,29 @@
             background: var(--bg);
             height: 100vh;
         }
+        
+        #particles-js {
+            margin: 0;
+            padding: 0;
+            height: 95%;
+            width: 100%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 10;
+        }
     </style>
 </head>
 
 <body class="container-fluid">
     <div class="row justify-content-center h-100">
 
+        <div id="particles-js"></div>
+
         <!-- head -->
         <div id="header" class="row p-0" style="height:10vh;">
-            <nav class="navbar navbar-expand-xl text-light navbar-dark" style="background-color: var(--utama);">
+            <nav class="navbar navbar-expand-xl text-light navbar-dark" style="background-color: var(--utama); z-index: 12;">
                 <div class="container-fluid p-0">
                     <a class="navbar-brand text-light" style="cursor: default;">
                         <h3 class="m-0" style="padding: 8px">Canteen</h3>
@@ -80,10 +94,10 @@
         <!-- main -->
         <div id="main" style="width:100%"
             class="row row-cols-1 row-cols-xl-3 p-0 m-0 d-flex align-items-center justify-content-around">
-            <img class="col p-0" style="width:250px; aspect-ratio: 1; z-index: 0;" src="/images/logo.png" alt="SD SEA Sentosa Logo" id="koin">
+            <img class="col p-0" style="width:250px; aspect-ratio: 1; z-index: 0; z-index: 11;" src="/images/logo.png" alt="SD SEA Sentosa Logo" id="koin">
             <div id="garis" class="col p-0" style="height:50vh; width:1px; background-color: black;"></div>
 
-            <form class="col w-50" th:action="@{/register}" th:object="${accountDto}" method="post">
+            <form class="col w-50" th:action="@{/register}" th:object="${accountDto}" method="post" style=" z-index: 11;">
                 <div class="input-group mb-2">
                     <span style="white-space: normal; text-align: start; background-color: var(--utama);"
                         class="input-group-text w-25 text-light" id="basic-addon1">Student's ID
@@ -138,7 +152,7 @@
         <!-- main -->
 
         <!-- footer -->
-        <div id="footer" class="row d-flex p-0 m-0" style="align-items:flex-end;">
+        <div id="footer" class="row d-flex p-0 m-0" style="align-items:flex-end; z-index:12">
             <div class="m-0 p-0" style="background-color: var(--utama)">
                 <div class="d-flex flex-column align-items-center justify-content-center p-0" style="height:10vh;">
                     <ul class="nav justify-content-center">
@@ -156,13 +170,15 @@
                     </ul>
                     <div class="w-50" style="border-top: 1px solid white"></div>
                     <p class="text-center text-light m-0">
-                        © Mahasiswa Fasilkom Universitas Indonesia 2020, Evan Aurelrius
+                        © Mahasiswa Fasilkom Universitas Indonesia 2020
                     </p>
                 </div>
             </div>
         </div>
     </div>
 </body>
+<script src="/js/particles.js"></script>
+<script src="/js/app.js"></script>
 <script src="/js/bootstrap.js"></script>
 <script src="/js/script.js"></script>
 

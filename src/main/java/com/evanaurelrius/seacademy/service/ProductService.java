@@ -30,4 +30,6 @@ public interface ProductService {
 
     Product buyProduct(String productId, long ownerId);
 
+    void setDefaultProductIfUnset();
+
 }

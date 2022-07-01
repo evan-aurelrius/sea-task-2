@@ -2,6 +2,8 @@ package com.evanaurelrius.seacademy;
 
 import com.evanaurelrius.seacademy.controller.ProductController;
 import com.evanaurelrius.seacademy.service.BalanceService;
+import com.evanaurelrius.seacademy.service.ProductService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -15,6 +17,8 @@ public class SeaTask2Application {
 
 	@Autowired
 	BalanceService balanceService;
+	@Autowired
+	ProductService productService;
 
 	public static void main(String[] args) {
 		new File(ProductController.uploadDir).mkdir();
@@ -25,6 +29,7 @@ public class SeaTask2Application {
 	public CommandLineRunner setDefaultBalanceIfUnset() {
 		return args -> {
 			balanceService.setDefaultBalanceIfUnset();
+			productService.setDefaultProductIfUnset();
 		};
 	}
 

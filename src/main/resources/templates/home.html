@@ -116,7 +116,7 @@
           <!-- left -->
           <div class="col-md-4 d-flex flex-column"
             style="position: relative; align-items: center; backdrop-filter: blur(1px);">
-            <img th:src="@{'/imagedata/' + ${product.imageSrc}}"
+            <img th:src="@{'/imagedata/' + ${product.imageSrc}}" onerror="this.src='/images/not_found.png';"
               th:style="'object-fit:contain; aspect-ratio: 1; backdrop-filter: blur(10px);'" data-bs-toggle="modal"
               th:attr="data-bs-target='#detailDialog-'+${product.id}" class="h-75 w-100">
             <div class="h-75 w-100"
@@ -169,7 +169,7 @@
           </ul>
           <div class="w-50" style="border-top: 1px solid white"></div>
           <p class="text-center text-light m-0">
-            © Mahasiswa Fasilkom Universitas Indonesia 2020, Evan Aurelrius
+            © Mahasiswa Fasilkom Universitas Indonesia 2020
           </p>
         </div>
       </div>
@@ -210,7 +210,7 @@
         </div>
         <!-- body -->
         <div class="position-relative" style="width:100%; aspect-ratio: 1; position:relative;">
-          <img th:src="@{'/imagedata/' + ${product.imageSrc}}" ;
+          <img th:src="@{'/imagedata/' + ${product.imageSrc}}" ;  onerror="this.src='/images/not_found.png';"
             style="object-fit: contain; position:absolute; z-index:1" class="img-fluid card-img-top w-100 h-100">
           <div class="w-100 h-100"
             th:style="'filter: blur(4px);

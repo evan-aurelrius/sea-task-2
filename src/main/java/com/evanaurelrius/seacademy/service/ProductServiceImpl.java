@@ -34,7 +34,6 @@ public class ProductServiceImpl implements ProductService{
         Product newProduct = new Product();
         SimpleDateFormat ft = new SimpleDateFormat("yyMMddhhmmssMs");
         String datetime = ft.format(new Timestamp(System.currentTimeMillis()));
-        StringBuilder fileNames = new StringBuilder();
         String fileName = name.replace(" ","")+datetime+image.getOriginalFilename().substring(image.getOriginalFilename().length()-4);
         Path fileNameAndPath = Paths.get(uploadDir, fileName);
 
@@ -98,6 +97,32 @@ public class ProductServiceImpl implements ProductService{
     @Override
     public List<Product> getAllProducts() {
         return productRepository.findAll();
+    }
+
+    @Override
+    public void setDefaultProductIfUnset() {
+        if(Boolean.FALSE.equals(productRepository.findAll().size()>0)) {
+            Timestamp ts = new Timestamp(System.currentTimeMillis());
+
+            productRepository.save(new Product("Tanaman Hias", "exam1.jpeg",
+            "Tanaman hias murah\rBisa dijadikan sebagai dekorasi di rumah anda",
+            "Rp125.000", ts));
+            productRepository.save(new Product("Brand New Apple Watch", "exam2.jpg",
+            "Baru! Original! Tahan air!\rFree charging cable!",
+            "Rp7.500.000", ts));
+            productRepository.save(new Product("Macbook Pro Max Plus", "exam3.jpg",
+            "Laptop generasi terbaru keluaran Apple!\r512 GB RAM\rFire proof",
+            "Rp27.500.000", ts));
+            productRepository.save(new Product("Botol minum kayu jati", "exam4.jpg",
+            "Botol yang terbuat dari kayu jati!\rBisa untuk minum atau memukul lawan!",
+            "Rp325.000", ts));
+            productRepository.save(new Product("Mouse Gaming RGB", "exam5.jpg",
+            "Mouse anti lose streak!\rDilengkapi dengan sistem pendingin terbaru",
+            "Rp4.800.000", ts));
+            productRepository.save(new Product("Mystery Snack Box", "exam6.jpg",
+            "Mystery box berisi snack yang berlimpah!",
+            "Rp78.000", ts));
+        }
     }
 
     @Override

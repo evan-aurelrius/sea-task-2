@@ -26,7 +26,7 @@ public class TransactionController {
     public String balanceBox(Model model, HttpSession session) {
         Account currentUser = (Account) session.getAttribute("currentUser");
         String fullName = (String) session.getAttribute("fullName");
-        if(fullName!=null){
+        if(currentUser!=null){
             BalanceDTO balanceDto = new BalanceDTO();
             model.addAttribute("name", fullName);
         } else {
@@ -43,7 +43,7 @@ public class TransactionController {
     public String productSort(@PathVariable("sortingMechanism") String sortBy, Model model, HttpSession session) {
         Account currentUser = (Account) session.getAttribute("currentUser");
         String fullName = (String) session.getAttribute("fullName");
-        if(fullName==null){
+        if(currentUser==null){
             return "redirect:/login";
         }
         List<Product> products = new ArrayList<>();
